@@ -201,7 +201,12 @@
   
   /* Glass CTA Variant */
   .cta-glass {
-    @apply glass-effect text-primary transition-all duration-200;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--primary);
+    transition: all 0.2s;
   }
   
   .cta-glass:hover {
