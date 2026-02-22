@@ -184,12 +184,24 @@
   
   /* CTA Button Base */
   .cta-button {
-    @apply bg-primary text-primary-foreground font-semibold py-3 px-8 rounded-lg hover:bg-opacity-90 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+    @apply bg-primary text-primary-foreground font-semibold py-3 px-8 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+  }
+  
+  .cta-button:hover {
+    filter: brightness(0.9);
+  }
+  
+  .cta-button:active {
+    @apply scale-95;
   }
   
   /* Glass CTA Variant */
   .cta-glass {
-    @apply glass-effect text-primary hover:bg-opacity-80 transition-all duration-200;
+    @apply glass-effect text-primary transition-all duration-200;
+  }
+  
+  .cta-glass:hover {
+    background: rgba(255, 255, 255, 0.85);
   }
   
   /* Fade In Animation */
