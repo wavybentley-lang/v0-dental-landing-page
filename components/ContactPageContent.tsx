@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Sparkles, Phone, Mail, MapPin, Clock, ArrowLeft } from "lucide-react"
 import { ContactForm } from "@/components/ContactForm"
+import { CTASection } from "@/components/CTASection"
 import { Footer } from "@/components/Footer"
 import { BookingModal } from "@/components/BookingModal"
 
@@ -136,6 +137,7 @@ export function ContactPageContent() {
         </div>
       </main>
 
+      <CTASection onBookingClick={() => setModalOpen(true)} />
       <Footer />
       <BookingModal open={modalOpen} onOpenChange={setModalOpen} />
     </div>
