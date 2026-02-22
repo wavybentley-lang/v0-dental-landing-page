@@ -5,9 +5,10 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 interface CTASectionProps {
   onBookingClick: () => void
+  onLearnMoreClick?: () => void
 }
 
-export function CTASection({ onBookingClick }: CTASectionProps) {
+export function CTASection({ onBookingClick, onLearnMoreClick }: CTASectionProps) {
   const { ref, isVisible } = useScrollReveal()
 
   return (
