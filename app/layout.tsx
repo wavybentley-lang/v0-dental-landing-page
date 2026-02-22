@@ -74,6 +74,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-sans antialiased">
         {children}
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>
