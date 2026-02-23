@@ -26,9 +26,8 @@ export function TestimonialCard({
   return (
     <div
       ref={ref}
-      className={`glass-effect flex flex-col rounded-xl p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-      }`}
+      className={`premium-card flex flex-col p-6 transition-all duration-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+        }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {/* Star Rating */}
@@ -36,9 +35,8 @@ export function TestimonialCard({
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
-            className={`size-4 ${
-              i < rating ? "fill-amber-400 text-amber-400" : "text-muted"
-            }`}
+            className={`size-4 ${i < rating ? "fill-gold text-gold" : "text-muted"
+              }`}
           />
         ))}
       </div>

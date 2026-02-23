@@ -11,33 +11,32 @@ interface HeroSectionProps {
 
 export function HeroSection({ onBookingClick }: HeroSectionProps) {
   return (
-    <section className="relative w-full overflow-hidden bg-secondary">
+    <section className="relative w-full overflow-hidden hero-gradient">
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col items-center gap-8 px-4 py-12 md:flex-row md:gap-12 md:px-6 md:py-16 lg:gap-16 lg:px-8 lg:py-20">
         {/* Text Content */}
         <div className="flex max-w-xl flex-1 flex-col items-center text-center md:items-start md:text-left animate-fade-in">
-          <span className="mb-4 inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
+          <span className="section-label">
             Professional Whitening
           </span>
-          <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
-            Transform Your Smile with{" "}
-            <span className="text-primary">Professional Whitening</span>
+          <h1 className="text-balance leading-tight text-foreground">
+            Transform Your Smile with <span className="text-gold italic">Professional Whitening</span>
           </h1>
-          <p className="mt-4 text-pretty text-lg leading-relaxed text-muted-foreground md:mt-6 md:text-xl">
+          <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl font-sans">
             Achieve 8+ shades brighter in just one session. Our enamel-safe
             technology and personalized care deliver results you can see
             immediately.
           </p>
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row md:mt-10">
+          <div className="mt-8 flex flex-col items-center gap-6 sm:flex-row md:mt-10">
             <Button
               onClick={onBookingClick}
               size="lg"
-              className="h-12 rounded-lg px-8 text-base"
+              className="h-14 rounded-lg px-8 text-base shadow-lg"
             >
               Book Your Free Consultation
             </Button>
             <Link
               href="/contact"
-              className="text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-primary hover:underline"
+              className="text-sm font-medium text-navy/70 border-b border-navy/20 transition-all hover:text-navy hover:border-navy"
             >
               {"Questions? Contact Sarah"}
             </Link>

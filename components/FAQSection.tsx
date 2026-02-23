@@ -38,22 +38,21 @@ export function FAQSection() {
     <section id="faq" className="w-full bg-background py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
-          <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-primary">
+          <span className="section-label">
             FAQ
           </span>
           <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
             Frequently Asked Questions
           </h2>
-          <p className="mt-4 text-pretty text-muted-foreground">
+          <p className="mt-4 text-pretty text-muted-foreground font-sans">
             Everything you need to know about our whitening treatments.
           </p>
         </div>
 
         <div
           ref={ref}
-          className={`mx-auto max-w-2xl transition-all duration-700 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
+          className={`mx-auto max-w-2xl transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+            }`}
         >
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, i) => (

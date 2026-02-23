@@ -34,7 +34,7 @@ export function FeaturesSection({ onBookingClick }: FeaturesSectionProps) {
     <section id="features" className="w-full bg-background py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
-          <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-primary">
+          <span className="section-label">
             Why Choose Us
           </span>
           <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
@@ -57,7 +57,7 @@ export function FeaturesSection({ onBookingClick }: FeaturesSectionProps) {
             onClick={onBookingClick}
             variant="outline"
             size="lg"
-            className="rounded-lg border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground"
+            className="rounded-lg"
           >
             {"Ready? Book Now"}
           </Button>

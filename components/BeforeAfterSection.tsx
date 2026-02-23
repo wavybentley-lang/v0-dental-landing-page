@@ -39,25 +39,24 @@ export function BeforeAfterSection({ onBookingClick }: BeforeAfterSectionProps) 
   const { ref, isVisible } = useScrollReveal()
 
   return (
-    <section id="results" className="w-full bg-secondary py-16 md:py-20 lg:py-24">
+    <section id="results" className="w-full bg-muted py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
-          <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-primary">
+          <span className="section-label">
             Real Results
           </span>
           <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
             See the Transformation
           </h2>
-          <p className="mt-4 text-pretty text-muted-foreground">
+          <p className="mt-4 text-pretty text-muted-foreground font-sans">
             Real patients, real results. See why hundreds trust us with their smile.
           </p>
         </div>
 
         <div
           ref={ref}
-          className={`transition-all duration-700 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
+          className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+            }`}
         >
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {patients.map((patient) => (

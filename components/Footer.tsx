@@ -24,18 +24,18 @@ export function Footer() {
   }
 
   return (
-    <footer className="w-full bg-foreground text-background">
+    <footer className="w-full bg-navy text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* About */}
           <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2">
-              <Sparkles className="size-5 text-primary" />
+            <Link href="/" className="flex items-center gap-2 group">
+              <Sparkles className="size-5 text-gold group-hover:scale-110 transition-transform" />
               <span className="text-lg font-bold">
-                Bright<span className="text-primary">Smile</span>
+                Bright<span className="text-gold">Smile</span>
               </span>
             </Link>
-            <p className="text-sm leading-relaxed text-background/70">
+            <p className="text-sm leading-relaxed text-white/70 italic">
               Professional teeth whitening clinic dedicated to helping you
               achieve the brightest, healthiest smile with safe, advanced
               technology.
@@ -44,7 +44,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider">
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
               Quick Links
             </h4>
             <ul className="flex flex-col gap-2">
@@ -53,14 +53,14 @@ export function Footer() {
                   {link.href.startsWith("/") ? (
                     <Link
                       href={link.href}
-                      className="text-sm text-background/70 transition-colors hover:text-primary"
+                      className="text-sm text-white/70 transition-colors hover:text-gold"
                     >
                       {link.label}
                     </Link>
                   ) : (
                     <a
                       href={link.href}
-                      className="text-sm text-background/70 transition-colors hover:text-primary"
+                      className="text-sm text-white/70 transition-colors hover:text-gold"
                     >
                       {link.label}
                     </a>
@@ -72,17 +72,17 @@ export function Footer() {
 
           {/* Hours */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider">
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
               Business Hours
             </h4>
             <ul className="flex flex-col gap-2">
               {hours.map((h) => (
                 <li
                   key={h.day}
-                  className="flex justify-between text-sm text-background/70"
+                  className="flex justify-between text-sm text-white/70 border-b border-white/5 pb-1"
                 >
                   <span>{h.day}</span>
-                  <span>{h.time}</span>
+                  <span className="font-medium text-white/90">{h.time}</span>
                 </li>
               ))}
             </ul>
@@ -90,30 +90,30 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider">
-              Contact
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+              Contact Us
             </h4>
             <ul className="flex flex-col gap-3">
               <li>
                 <a
                   href="tel:+15550001234"
-                  className="flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-primary"
+                  className="flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-gold"
                 >
-                  <Phone className="size-4" />
+                  <Phone className="size-4 text-gold" />
                   (555) 000-1234
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:hello@brightsmile.com"
-                  className="flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-primary"
+                  className="flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-gold"
                 >
-                  <Mail className="size-4" />
+                  <Mail className="size-4 text-gold" />
                   hello@brightsmile.com
                 </a>
               </li>
-              <li className="flex items-start gap-2 text-sm text-background/70">
-                <MapPin className="mt-0.5 size-4 shrink-0" />
+              <li className="flex items-start gap-2 text-sm text-white/70">
+                <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
                 <span>123 Dental Ave, Suite 100<br />San Francisco, CA 94102</span>
               </li>
             </ul>
@@ -121,30 +121,30 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-background/10 pt-8 md:flex-row">
-          <p className="text-xs text-background/50">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
+          <p className="text-xs text-white/50">
             {"© 2026 Bright Smile Clinic. All rights reserved."}
           </p>
           <div className="flex items-center gap-6">
             <a
               href="#"
-              className="text-xs text-background/50 transition-colors hover:text-background/80"
+              className="text-xs text-white/50 transition-colors hover:text-gold"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-xs text-background/50 transition-colors hover:text-background/80"
+              className="text-xs text-white/50 transition-colors hover:text-gold"
             >
               Terms of Service
             </a>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1 text-xs text-background/50 transition-colors hover:text-primary"
+              className="flex items-center gap-1 text-xs text-white/50 transition-colors hover:text-gold group"
               aria-label="Back to top"
             >
               Back to Top
-              <ChevronUp className="size-3" />
+              <ChevronUp className="size-3 group-hover:-translate-y-1 transition-transform" />
             </button>
           </div>
         </div>
