@@ -12,15 +12,17 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { CheckCircle, Clock, DollarSign, ChevronRight, ArrowLeft } from "lucide-react"
+import { CheckCircle, Clock, DollarSign, ChevronRight, ArrowLeft, Sun, Cloud, Sunset } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Calendar } from "@/components/ui/calendar"
+import { format, addDays, isSameDay, isWeekend } from "date-fns"
 
 interface BookingModalProps {
   open: boolean
   onOpenChange: (open: boolean) => void
 }
 
-type Step = "package" | "details"
+type Step = "package" | "date" | "time" | "details"
 
 const PACKAGES = [
   {
@@ -28,6 +30,7 @@ const PACKAGES = [
     name: "Express Whitening",
     price: 249,
     duration: "45 mins",
+    durationMin: 45,
     description: "Rapid brightening for those with a busy schedule. Perfect for a quick refresh.",
   },
   {
@@ -35,6 +38,7 @@ const PACKAGES = [
     name: "Signature Treatment",
     price: 499,
     duration: "90 mins",
+    durationMin: 90,
     description: "Our most popular comprehensive whitening experience for lasting results.",
     popular: true,
   },
@@ -43,14 +47,49 @@ const PACKAGES = [
     name: "Elite Spa Package",
     price: 799,
     duration: "120 mins",
+    durationMin: 120,
     description: "Luxury whitening combined with deep enamel conditioning and premium care.",
   },
+]
+
+// Mock unavailable dates for demo
+const UNAVAILABLE_DATES = [
+  addDays(new Date(), 2),
+  addDays(new Date(), 5),
+  addDays(new Date(), 8),
+  addDays(new Date(), 12),
 ]
 
 export function BookingModal({ open, onOpenChange }: BookingModalProps) {
   const [step, setStep] = useState<Step>("package")
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null)
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
+  const [selectedWindow, setSelectedWindow] = useState<string | null>(null)
+  const [selectedTime, setSelectedTime] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
+
+  const generateTimeSlots = (duration: number) => {
+    const slots = []
+    let current = new Date()
+    current.setHours(9, 0, 0, 0)
+    const end = new Date()
+    end.setHours(17, 0, 0, 0)
+
+    while (current <= end) {
+      slots.push(format(current, "h:mm a"))
+      current = new Date(current.getTime() + 30 * 60 * 1000)
+    }
+    return slots
+  }
+
+  const TIME_WINDOWS = [
+    { id: "morning", label: "Morning", range: "9:00 AM – 12:00 PM", icon: Sun, start: 9, end: 12 },
+    { id: "afternoon", label: "Afternoon", range: "12:00 PM – 3:00 PM", icon: Cloud, start: 12, end: 15 },
+    { id: "evening", label: "Evening", range: "3:00 PM – 6:00 PM", icon: Sunset, start: 15, end: 18 },
+  ]
+
+  const selectedPackageData = PACKAGES.find((p) => p.id === selectedPackage)
+  const timeSlots = generateTimeSlots(selectedPackageData?.durationMin || 60)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -60,6 +99,9 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
       onOpenChange(false)
       setStep("package")
       setSelectedPackage(null)
+      setSelectedDate(undefined)
+      setSelectedWindow(null)
+      setSelectedTime(null)
     }, 2500)
   }
 
@@ -68,198 +110,356 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
       setSubmitted(false)
       setStep("package")
       setSelectedPackage(null)
+      setSelectedDate(undefined)
+      setSelectedWindow(null)
+      setSelectedTime(null)
     }
     onOpenChange(val)
   }
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-xl outline-none">
+      <DialogContent className="max-w-2xl outline-none p-0 overflow-hidden border-none shadow-2xl">
         {submitted ? (
-          <div className="flex flex-col items-center gap-4 py-8 text-center">
-            <div className="flex size-14 items-center justify-center rounded-full bg-primary/10">
-              <CheckCircle className="size-8 text-primary" />
+          <div className="flex flex-col items-center gap-4 py-12 text-center">
+            <div className="flex size-16 items-center justify-center rounded-full bg-[#C9A96E]/10">
+              <CheckCircle className="size-10 text-[#C9A96E]" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-foreground">
+              <h3 className="text-2xl font-serif font-semibold text-[#1B2B4B]">
                 Thank You!
               </h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {"We'll contact you shortly to confirm your appointment for your selected package."}
+              <p className="mt-2 text-base text-muted-foreground px-8">
+                {"We've received your request. Our team will contact you shortly to confirm your whitening treatment."}
               </p>
             </div>
           </div>
         ) : (
-          <div className="flex flex-col gap-6">
-            <DialogHeader>
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary">
-                <span>Step {step === "package" ? "1" : "2"} of 2</span>
-                <div className="h-px flex-1 bg-border" />
-              </div>
-              <DialogTitle className="font-serif text-3xl">
-                {step === "package" ? "Select Your Package" : "Appointment Details"}
-              </DialogTitle>
-              <DialogDescription className="font-sans">
-                {step === "package"
-                  ? "Choose the whitening treatment that best suits your goals."
-                  : "Please provide your contact information to finalize the booking."}
-              </DialogDescription>
-            </DialogHeader>
+          <div className="flex flex-col">
+            <div className="p-8 pb-4">
+              <DialogHeader>
+                <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#C9A96E] mb-2">
+                  <span>Step {step === "package" ? "1" : step === "date" ? "2" : step === "time" ? "3" : "4"} of 4</span>
+                  <div className="h-px flex-1 bg-[#C9A96E]/20" />
+                </div>
+                <DialogTitle className="font-serif text-4xl text-[#1B2B4B] tracking-tight">
+                  {step === "package" ? "Select Your Package" : step === "date" ? "Choose Date" : step === "time" ? "Choose Time" : "Appointment Details"}
+                </DialogTitle>
+                <DialogDescription className="font-sans text-base mt-2">
+                  {step === "package"
+                    ? "Choose the whitening treatment that best suits your goals."
+                    : step === "date"
+                      ? "Select your preferred date for your visit."
+                      : step === "time"
+                        ? "Select an available time slot for your appointment."
+                        : "Please provide your contact information to finalize the booking."}
+                </DialogDescription>
+              </DialogHeader>
+            </div>
 
-            {step === "package" ? (
-              <div className="flex flex-col gap-4">
-                <div className="grid gap-3">
-                  {PACKAGES.map((pkg) => (
-                    <button
-                      key={pkg.id}
-                      onClick={() => setSelectedPackage(pkg.id)}
-                      className={cn(
-                        "group relative flex flex-col items-start gap-2 rounded-xl border-2 p-4 text-left transition-all hover:bg-muted/50",
-                        selectedPackage === pkg.id
-                          ? "border-primary bg-primary/[0.02]"
-                          : "border-border"
-                      )}
-                    >
-                      {pkg.popular && (
-                        <span className="absolute -top-3 right-4 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-tighter text-primary-foreground">
-                          Most Popular
-                        </span>
-                      )}
-                      <div className="flex w-full items-center justify-between">
-                        <h4 className="font-serif text-lg font-semibold tracking-tight text-foreground">
-                          {pkg.name}
-                        </h4>
-                        <div className="flex items-center font-sans font-bold text-primary">
-                          <DollarSign className="size-4" />
-                          <span className="text-xl">{pkg.price}</span>
-                        </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground line-clamp-2 pr-8">
-                        {pkg.description}
-                      </p>
-                      <div className="flex items-center gap-4 pt-1">
-                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <Clock className="size-3" />
-                          {pkg.duration}
-                        </div>
-                        {selectedPackage === pkg.id && (
-                          <div className="flex items-center gap-1 text-xs font-semibold text-primary">
-                            <CheckCircle className="size-3" />
-                            Selected
-                          </div>
+            <div className="p-8 pt-0">
+              {step === "package" ? (
+                <div className="flex flex-col gap-6">
+                  <div className="grid gap-4">
+                    {PACKAGES.map((pkg) => (
+                      <button
+                        key={pkg.id}
+                        onClick={() => setSelectedPackage(pkg.id)}
+                        className={cn(
+                          "group relative flex flex-col items-start gap-2 rounded-2xl border-2 p-5 text-left transition-all duration-300",
+                          selectedPackage === pkg.id
+                            ? "border-[#C9A96E] bg-[#C9A96E]/5 shadow-md"
+                            : "border-border hover:border-[#C9A96E]/30 hover:bg-muted/30"
                         )}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-
-                <div className="flex justify-end pt-2">
-                  <Button
-                    onClick={() => setStep("details")}
-                    disabled={!selectedPackage}
-                    className="group"
-                  >
-                    Continue to Details
-                    <ChevronRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div className="mb-2 rounded-lg bg-muted/30 p-3 text-sm flex items-center justify-between border border-border/50">
-                  <div>
-                    <span className="font-semibold text-foreground">Selected:</span>{" "}
-                    <span className="text-muted-foreground">
-                      {PACKAGES.find(p => p.id === selectedPackage)?.name}
-                    </span>
+                      >
+                        {pkg.popular && (
+                          <span className="absolute -top-3 right-6 rounded-full bg-[#1B2B4B] px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-[#C9A96E]">
+                            Most Popular
+                          </span>
+                        )}
+                        <div className="flex w-full items-center justify-between">
+                          <h4 className="font-serif text-xl font-semibold tracking-tight text-[#1B2B4B]">
+                            {pkg.name}
+                          </h4>
+                          <div className="flex items-center font-sans font-bold text-[#C9A96E]">
+                            <DollarSign className="size-5" />
+                            <span className="text-2xl">{pkg.price}</span>
+                          </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground line-clamp-2 pr-12 leading-relaxed">
+                          {pkg.description}
+                        </p>
+                        <div className="flex items-center gap-6 pt-2">
+                          <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                            <Clock className="size-4 text-[#C9A96E]" />
+                            {pkg.duration}
+                          </div>
+                          {selectedPackage === pkg.id && (
+                            <div className="flex items-center gap-2 text-xs font-bold text-[#C9A96E]">
+                              <CheckCircle className="size-4" />
+                              Selected Treatment
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    ))}
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setStep("package")}
-                    className="text-primary hover:underline font-medium text-xs"
-                  >
-                    Change
-                  </button>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="booking-name">Full Name</Label>
-                    <Input
-                      id="booking-name"
-                      name="name"
-                      placeholder="Sarah Jenkins"
-                      required
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="booking-phone">Phone</Label>
-                    <Input
-                      id="booking-phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="(555) 000-0000"
-                      required
-                    />
+                  <div className="flex justify-end pt-4">
+                    <Button
+                      onClick={() => setStep("date")}
+                      disabled={!selectedPackage}
+                      className="h-12 px-8 rounded-full bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white font-bold tracking-wide shadow-lg transition-all hover:-translate-y-0.5"
+                    >
+                      Continue to Date
+                      <ChevronRight className="ml-2 size-5" />
+                    </Button>
                   </div>
                 </div>
+              ) : step === "date" ? (
+                <div className="flex flex-col gap-8">
+                  <div className="flex flex-col items-center justify-center bg-muted/20 p-8 rounded-3xl border border-border/50">
+                    <div className="flex flex-col gap-4 w-full max-w-sm">
+                      <Label className="text-[#1B2B4B] font-serif text-xl font-semibold px-1 text-center mb-2">Select Date</Label>
+                      <Calendar
+                        mode="single"
+                        selected={selectedDate}
+                        onSelect={(date) => {
+                          setSelectedDate(date)
+                          setSelectedTime(null)
+                        }}
+                        disabled={(date) =>
+                          date < new Date(new Date().setHours(0, 0, 0, 0)) ||
+                          isWeekend(date) ||
+                          UNAVAILABLE_DATES.some((ud) => isSameDay(date, ud))
+                        }
+                        className="rounded-2xl border-none bg-white shadow-xl p-6 mx-auto"
+                        classNames={{
+                          selected: "!bg-[#C9A96E] !text-[#1B2B4B] !font-bold rounded-lg",
+                          day: "hover:!bg-[#C9A96E] hover:!text-[#1B2B4B] transition-all rounded-lg",
+                          today: "!bg-transparent !text-[#C9A96E] !font-bold !border !border-[#C9A96E]/20",
+                        }}
+                      />
+                    </div>
+                  </div>
 
-                <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="booking-email">Email</Label>
-                  <Input
-                    id="booking-email"
-                    name="email"
-                    type="email"
-                    placeholder="sarah@example.com"
-                    required
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="booking-date">Preferred Date</Label>
-                  <Input
-                    id="booking-date"
-                    name="date"
-                    type="date"
-                    required
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="booking-message">
-                    Special Requests <span className="text-muted-foreground">(optional)</span>
-                  </Label>
-                  <Textarea
-                    id="booking-message"
-                    name="message"
-                    placeholder="Tell us about your whitening goals or any concerns..."
-                    rows={3}
-                  />
-                </div>
-
-                <div className="flex flex-col-reverse gap-2 pt-2 sm:flex-row sm:justify-between">
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    onClick={() => setStep("package")}
-                    className="flex items-center gap-2"
-                  >
-                    <ArrowLeft className="size-4" />
-                    Back
-                  </Button>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col-reverse gap-4 pt-2 sm:flex-row sm:justify-between px-2">
                     <Button
                       type="button"
-                      variant="outline"
-                      onClick={() => handleClose(false)}
+                      variant="ghost"
+                      onClick={() => setStep("package")}
+                      className="flex items-center gap-2 text-[#1B2B4B] font-bold hover:bg-muted"
                     >
-                      Cancel
+                      <ArrowLeft className="size-5" />
+                      Back to Packages
                     </Button>
-                    <Button type="submit">Confirm Appointment</Button>
+                    <Button
+                      onClick={() => setStep("time")}
+                      disabled={!selectedDate}
+                      className="h-12 px-8 rounded-full bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white font-bold tracking-wide shadow-lg disabled:opacity-30 transition-all hover:-translate-y-0.5"
+                    >
+                      Continue to Time
+                      <ChevronRight className="ml-2 size-5" />
+                    </Button>
                   </div>
                 </div>
-              </form>
-            )}
+              ) : step === "time" ? (
+                <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                  <div className="flex flex-col items-center justify-center bg-muted/20 p-6 rounded-3xl border border-border/50">
+                    <div className="flex flex-col gap-6 w-full">
+                      <div className="text-center">
+                        <Label className="text-[#1B2B4B] font-serif text-xl font-semibold mb-1 block">Preferred Window</Label>
+                        <p className="text-sm text-muted-foreground">
+                          {selectedDate && format(selectedDate, "MMMM d, yyyy")}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-3 gap-3">
+                        {TIME_WINDOWS.map((window) => (
+                          <button
+                            key={window.id}
+                            type="button"
+                            onClick={() => {
+                              setSelectedWindow(window.id)
+                              setSelectedTime(null)
+                            }}
+                            className={cn(
+                              "flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all duration-300",
+                              selectedWindow === window.id
+                                ? "border-[#C9A96E] bg-[#C9A96E]/10"
+                                : "border-border bg-white hover:border-[#C9A96E]/30"
+                            )}
+                          >
+                            <window.icon className={cn("size-6", selectedWindow === window.id ? "text-[#C9A96E]" : "text-muted-foreground")} />
+                            <span className={cn("text-sm font-bold", selectedWindow === window.id ? "text-[#1B2B4B]" : "text-[#1B2B4B]/70")}>{window.label}</span>
+                            <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-tighter text-center leading-none italic">{window.range}</span>
+                          </button>
+                        ))}
+                      </div>
+
+                      {selectedWindow && (
+                        <div className="flex flex-col animate-in zoom-in-95 fade-in duration-300">
+                          <div className="h-px w-full bg-[#1B2B4B]/5 mb-6" />
+                          <div className="text-center mb-4">
+                            <Label className="text-[#1B2B4B] font-semibold text-sm">Select Precise Time</Label>
+                          </div>
+                          <div className="grid grid-cols-3 gap-2">
+                            {timeSlots
+                              .filter(slot => {
+                                const [h, mAndA] = slot.split(":")
+                                const [m, a] = mAndA.split(" ")
+                                let hour = parseInt(h)
+                                if (a === "PM" && hour !== 12) hour += 12
+                                if (a === "AM" && hour === 12) hour = 0
+                                const window = TIME_WINDOWS.find(w => w.id === selectedWindow)
+                                return window && hour >= window.start && hour < window.end
+                              })
+                              .slice(0, 6)
+                              .map((time) => (
+                                <button
+                                  key={time}
+                                  type="button"
+                                  onClick={() => setSelectedTime(time)}
+                                  className={cn(
+                                    "px-2 py-3 text-xs font-bold rounded-xl border-2 transition-all duration-200",
+                                    selectedTime === time
+                                      ? "border-[#C9A96E] bg-[#C9A96E] text-[#1B2B4B] shadow-md scale-[1.02]"
+                                      : "border-[#1B2B4B]/20 bg-white text-[#1B2B4B] hover:border-[#1B2B4B]"
+                                  )}
+                                >
+                                  {time}
+                                </button>
+                              ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col-reverse gap-4 pt-2 sm:flex-row sm:justify-between px-2">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={() => setStep("date")}
+                      className="flex items-center gap-2 text-[#1B2B4B] font-bold hover:bg-muted"
+                    >
+                      <ArrowLeft className="size-5" />
+                      Back to Date
+                    </Button>
+                    <Button
+                      onClick={() => setStep("details")}
+                      disabled={!selectedTime || !selectedWindow}
+                      className="h-12 px-8 rounded-full bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white font-bold tracking-wide shadow-lg disabled:opacity-30 transition-all hover:-translate-y-0.5"
+                    >
+                      Continue to Details
+                      <ChevronRight className="ml-2 size-5" />
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <div className="mb-2 rounded-lg bg-muted/30 p-3 text-sm flex flex-col gap-1 border border-border/50">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="font-semibold text-foreground">Package:</span>{" "}
+                        <span className="text-muted-foreground">
+                          {selectedPackageData?.name}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setStep("package")}
+                        className="text-[#C9A96E] hover:underline font-medium text-xs"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="font-semibold text-foreground">Time:</span>{" "}
+                        <span className="text-muted-foreground">
+                          {selectedDate && format(selectedDate, "PPP")} at {selectedTime}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setStep("time")}
+                        className="text-[#C9A96E] hover:underline font-medium text-xs"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1.5">
+                      <Label htmlFor="booking-name">Full Name</Label>
+                      <Input
+                        id="booking-name"
+                        name="name"
+                        placeholder="Sarah Jenkins"
+                        required
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <Label htmlFor="booking-phone">Phone</Label>
+                      <Input
+                        id="booking-phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="(555) 000-0000"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="booking-email">Email</Label>
+                    <Input
+                      id="booking-email"
+                      name="email"
+                      type="email"
+                      placeholder="sarah@example.com"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="booking-message">
+                      Special Requests <span className="text-muted-foreground">(optional)</span>
+                    </Label>
+                    <Textarea
+                      id="booking-message"
+                      name="message"
+                      placeholder="Tell us about your whitening goals or any concerns..."
+                      rows={3}
+                    />
+                  </div>
+
+                  <div className="flex flex-col-reverse gap-2 pt-2 sm:flex-row sm:justify-between">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={() => setStep("time")}
+                      className="flex items-center gap-2"
+                    >
+                      <ArrowLeft className="size-4" />
+                      Back
+                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => handleClose(false)}
+                      >
+                        Cancel
+                      </Button>
+                      <Button type="submit" className="bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white">Confirm Appointment</Button>
+                    </div>
+                  </div>
+                </form>
+              )}
+            </div>
           </div>
         )}
       </DialogContent>
