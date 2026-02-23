@@ -25,7 +25,16 @@ interface BookingModalProps {
   onOpenChange: (open: boolean) => void
 }
 
-type Step = "package" | "date" | "time" | "details"
+type Step = "package" | "date" | "time" | "details" | "waitlist"
+
+const waitlistSchema = z.object({
+  name: z.string().min(2, "Full Name must be at least 2 characters"),
+  phone: z.string()
+    .min(1, "Phone Number is required")
+    .regex(/^\d{1,10}$/, "Please enter up to 10 digits only"),
+})
+
+type WaitlistFormData = z.infer<typeof waitlistSchema>
 
 const bookingSchema = z.object({
   name: z.string().min(2, "Full Name must be at least 2 characters"),
@@ -81,6 +90,8 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
   const [selectedWindow, setSelectedWindow] = useState<string | null>(null)
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
+  const [waitlistSubmitted, setWaitlistSubmitted] = useState(false)
+  const [waitlistEntries, setWaitlistEntries] = useState<any[]>([])
 
   const {
     register,
@@ -95,6 +106,20 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
       phone: "",
       email: "",
       message: "",
+    },
+  })
+
+  const {
+    register: registerWaitlist,
+    handleSubmit: handleWaitlistSubmit,
+    formState: { errors: waitlistErrors, isValid: isWaitlistValid, touchedFields: touchedWaitlistFields },
+    reset: resetWaitlist,
+  } = useForm<WaitlistFormData>({
+    resolver: zodResolver(waitlistSchema),
+    mode: "onBlur",
+    defaultValues: {
+      name: "",
+      phone: "",
     },
   })
 
@@ -120,6 +145,28 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
 
   const selectedPackageData = PACKAGES.find((p) => p.id === selectedPackage)
   const timeSlots = generateTimeSlots(selectedPackageData?.durationMin || 60)
+
+  const onWaitlistSubmit = (data: WaitlistFormData) => {
+    const entry = {
+      ...data,
+      date: selectedDate ? format(selectedDate, "yyyy-MM-dd") : null,
+      packageSelected: selectedPackageData?.name,
+      timestamp: new Date().toISOString(),
+    }
+    console.log("Waitlist Entry:", entry)
+    setWaitlistEntries((prev) => [...prev, entry])
+    setWaitlistSubmitted(true)
+    setTimeout(() => {
+      setWaitlistSubmitted(false)
+      onOpenChange(false)
+      setStep("package")
+      setSelectedPackage(null)
+      setSelectedDate(undefined)
+      setSelectedWindow(null)
+      setSelectedTime(null)
+      resetWaitlist()
+    }, 3000)
+  }
 
   const onSubmit = (data: BookingFormData) => {
     // Pass everything through as requested
@@ -156,19 +203,21 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
+    <Dialog open={open} onOpenChange={handleClose} >
       <DialogContent className="max-w-2xl outline-none p-0 overflow-hidden border-none shadow-2xl">
-        {submitted ? (
+        {submitted || waitlistSubmitted ? (
           <div className="flex flex-col items-center gap-4 py-12 text-center">
             <div className="flex size-16 items-center justify-center rounded-full bg-[#C9A96E]/10">
               <CheckCircle className="size-10 text-[#C9A96E]" />
             </div>
             <div>
               <h3 className="text-2xl font-serif font-semibold text-[#1B2B4B]">
-                Thank You!
+                {waitlistSubmitted ? "Waitlist Confirmed!" : "Thank You!"}
               </h3>
               <p className="mt-2 text-base text-muted-foreground px-8">
-                {"We've received your request. Our team will contact you shortly to confirm your whitening treatment."}
+                {waitlistSubmitted
+                  ? "You've been added to the waitlist! We typically have cancellations within 48 hours, so we'll notify you if a slot opens up."
+                  : "We've received your request. Our team will contact you shortly to confirm your whitening treatment."}
               </p>
             </div>
           </div>
@@ -177,11 +226,15 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
             <div className="p-8 pb-4">
               <DialogHeader>
                 <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#C9A96E] mb-2">
-                  <span>Step {step === "package" ? "1" : step === "date" ? "2" : step === "time" ? "3" : "4"} of 4</span>
+                  <span>
+                    {step === "waitlist"
+                      ? "Waitlist Registration"
+                      : `Step ${step === "package" ? "1" : step === "date" ? "2" : step === "time" ? "3" : "4"} of 4`}
+                  </span>
                   <div className="h-px flex-1 bg-[#C9A96E]/20" />
                 </div>
                 <DialogTitle className="font-serif text-4xl text-[#1B2B4B] tracking-tight">
-                  {step === "package" ? "Select Your Package" : step === "date" ? "Choose Date" : step === "time" ? "Choose Time" : "Appointment Details"}
+                  {step === "package" ? "Select Your Package" : step === "date" ? "Choose Date" : step === "time" ? "Choose Time" : step === "waitlist" ? "Join Waiting List" : "Appointment Details"}
                 </DialogTitle>
                 <DialogDescription className="font-sans text-base mt-2">
                   {step === "package"
@@ -190,7 +243,9 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                       ? "Select your preferred date for your visit."
                       : step === "time"
                         ? "Select an available time slot for your appointment."
-                        : "Please provide your contact information to finalize the booking."}
+                        : step === "waitlist"
+                          ? "Enter your details to be notified if a slot opens up on your selected date."
+                          : "Please provide your contact information to finalize the booking."}
                 </DialogDescription>
               </DialogHeader>
             </div>
@@ -268,14 +323,35 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                         }}
                         disabled={(date) =>
                           date < new Date(new Date().setHours(0, 0, 0, 0)) ||
-                          isWeekend(date) ||
-                          UNAVAILABLE_DATES.some((ud) => isSameDay(date, ud))
+                          isWeekend(date)
                         }
+                        modifiers={{
+                          booked: UNAVAILABLE_DATES
+                        }}
+                        modifiersClassNames={{
+                          booked: "text-muted-foreground opacity-60 bg-muted/20 relative"
+                        }}
                         className="rounded-2xl border-none bg-white shadow-xl p-6 mx-auto"
                         classNames={{
                           selected: "!bg-[#C9A96E] !text-[#1B2B4B] !font-bold rounded-lg",
-                          day: "hover:!bg-[#C9A96E] hover:!text-[#1B2B4B] transition-all rounded-lg",
+                          day: "hover:!bg-[#C9A96E] hover:!text-[#1B2B4B] transition-all rounded-lg relative",
                           today: "!bg-transparent !text-[#C9A96E] !font-bold !border !border-[#C9A96E]/20",
+                          day_outside: "opacity-0 pointer-events-none", // Hide days outside current month
+                        }}
+                        components={{
+                          DayContent: ({ date, ...props }) => {
+                            const isBooked = UNAVAILABLE_DATES.some((ud) => isSameDay(date, ud))
+                            return (
+                              <div className="flex flex-col items-center justify-center pt-1">
+                                <span>{date.getDate()}</span>
+                                {isBooked && (
+                                  <span className="text-[8px] font-bold uppercase tracking-tighter text-muted-foreground -mt-1">
+                                    Full
+                                  </span>
+                                )}
+                              </div>
+                            )
+                          }
                         }}
                       />
                     </div>
@@ -291,14 +367,24 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                       <ArrowLeft className="size-5" />
                       Back to Packages
                     </Button>
-                    <Button
-                      onClick={() => setStep("time")}
-                      disabled={!selectedDate}
-                      className="h-12 px-8 rounded-full bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white font-bold tracking-wide shadow-lg disabled:opacity-30 transition-all hover:-translate-y-0.5"
-                    >
-                      Continue to Time
-                      <ChevronRight className="ml-2 size-5" />
-                    </Button>
+                    {selectedDate && UNAVAILABLE_DATES.some((ud) => isSameDay(selectedDate, ud)) ? (
+                      <Button
+                        onClick={() => setStep("waitlist")}
+                        className="h-12 px-8 rounded-full bg-[#C9A96E] hover:bg-[#C9A96E]/90 text-[#1B2B4B] font-bold tracking-wide shadow-lg transition-all hover:-translate-y-0.5"
+                      >
+                        Join Waitlist
+                        <ChevronRight className="ml-2 size-5" />
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => setStep("time")}
+                        disabled={!selectedDate}
+                        className="h-12 px-8 rounded-full bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white font-bold tracking-wide shadow-lg disabled:opacity-30 transition-all hover:-translate-y-0.5"
+                      >
+                        Continue to Time
+                        <ChevronRight className="ml-2 size-5" />
+                      </Button>
+                    )}
                   </div>
                 </div>
               ) : step === "time" ? (
@@ -394,6 +480,93 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                     </Button>
                   </div>
                 </div>
+              ) : step === "waitlist" ? (
+                <form onSubmit={handleWaitlistSubmit(onWaitlistSubmit)} className="flex flex-col gap-6">
+                  <div className="mb-2 rounded-lg bg-[#C9A96E]/5 p-4 text-sm flex flex-col gap-2 border border-[#C9A96E]/20">
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-col">
+                        <span className="font-bold text-[#1B2B4B] uppercase text-[10px] tracking-wider mb-1">Waitlist for:</span>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="size-4 text-[#C9A96E]" />
+                          <span className="font-semibold text-foreground">{selectedDate && format(selectedDate, "PPP")}</span>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setStep("date")}
+                        className="text-[#C9A96E] hover:underline font-bold text-xs"
+                      >
+                        Change Date
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-1.5">
+                      <Label htmlFor="waitlist-name" className={cn(waitlistErrors.name && "text-red-500")}>Full Name</Label>
+                      <Input
+                        id="waitlist-name"
+                        placeholder="Sarah Jenkins"
+                        {...registerWaitlist("name")}
+                        className={cn(
+                          "transition-all duration-300",
+                          waitlistErrors.name
+                            ? "border-red-500 focus-visible:ring-red-500"
+                            : touchedWaitlistFields.name && !waitlistErrors.name
+                              ? "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
+                              : "border-border"
+                        )}
+                      />
+                      {waitlistErrors.name && (
+                        <p className="text-[10px] text-red-500 mt-0.5 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                          {waitlistErrors.name.message}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <Label htmlFor="waitlist-phone" className={cn(waitlistErrors.phone && "text-red-500")}>Phone</Label>
+                      <Input
+                        id="waitlist-phone"
+                        type="tel"
+                        placeholder="(555) 000-0000"
+                        {...registerWaitlist("phone")}
+                        className={cn(
+                          "transition-all duration-300",
+                          waitlistErrors.phone
+                            ? "border-red-500 focus-visible:ring-red-500"
+                            : touchedWaitlistFields.phone && !waitlistErrors.phone
+                              ? "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
+                              : "border-border"
+                        )}
+                      />
+                      {waitlistErrors.phone && (
+                        <p className="text-[10px] text-red-500 mt-0.5 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                          {waitlistErrors.phone.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col-reverse gap-4 pt-4 sm:flex-row sm:justify-between px-2">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={() => setStep("date")}
+                      className="flex items-center gap-2 text-[#1B2B4B] font-bold hover:bg-muted"
+                    >
+                      <ArrowLeft className="size-5" />
+                      Back to Calendar
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={!isWaitlistValid}
+                      className="h-12 px-8 rounded-full bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white font-bold tracking-wide shadow-lg disabled:opacity-30 transition-all hover:-translate-y-0.5"
+                    >
+                      Complete Waitlist
+                      <ChevronRight className="ml-2 size-5" />
+                    </Button>
+                  </div>
+                </form>
               ) : (
                 <form onSubmit={handleFormSubmit(onSubmit)} className="flex flex-col gap-4">
                   <div className="mb-2 rounded-lg bg-muted/30 p-3 text-sm flex flex-col gap-1 border border-border/50">
@@ -547,6 +720,6 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
           </div>
         )}
       </DialogContent>
-    </Dialog>
+    </Dialog >
   )
 }
