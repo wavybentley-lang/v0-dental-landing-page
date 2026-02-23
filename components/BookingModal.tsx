@@ -15,6 +15,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { CheckCircle, Clock, DollarSign, ChevronRight, ArrowLeft, Sun, Cloud, Sunset } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Calendar } from "@/components/ui/calendar"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 import { format, addDays, isSameDay, isWeekend } from "date-fns"
 
 interface BookingModalProps {
@@ -23,6 +26,17 @@ interface BookingModalProps {
 }
 
 type Step = "package" | "date" | "time" | "details"
+
+const bookingSchema = z.object({
+  name: z.string().min(2, "Full Name must be at least 2 characters"),
+  phone: z.string()
+    .min(1, "Phone Number is required")
+    .regex(/^\d{1,10}$/, "Please enter up to 10 digits only"),
+  email: z.string().min(1, "Email is required").email("Invalid email format"),
+  message: z.string().optional(),
+})
+
+type BookingFormData = z.infer<typeof bookingSchema>
 
 const PACKAGES = [
   {
@@ -68,6 +82,22 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
 
+  const {
+    register,
+    handleSubmit: handleFormSubmit,
+    formState: { errors, isValid, touchedFields },
+    reset,
+  } = useForm<BookingFormData>({
+    resolver: zodResolver(bookingSchema),
+    mode: "onBlur",
+    defaultValues: {
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+    },
+  })
+
   const generateTimeSlots = (duration: number) => {
     const slots = []
     let current = new Date()
@@ -91,8 +121,14 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
   const selectedPackageData = PACKAGES.find((p) => p.id === selectedPackage)
   const timeSlots = generateTimeSlots(selectedPackageData?.durationMin || 60)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const onSubmit = (data: BookingFormData) => {
+    // Pass everything through as requested
+    console.log("Booking Confirmed:", {
+      ...data,
+      package: selectedPackageData?.name,
+      date: selectedDate,
+      time: selectedTime,
+    })
     setSubmitted(true)
     setTimeout(() => {
       setSubmitted(false)
@@ -102,6 +138,7 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
       setSelectedDate(undefined)
       setSelectedWindow(null)
       setSelectedTime(null)
+      reset()
     }, 2500)
   }
 
@@ -113,6 +150,7 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
       setSelectedDate(undefined)
       setSelectedWindow(null)
       setSelectedTime(null)
+      reset()
     }
     onOpenChange(val)
   }
@@ -357,7 +395,7 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <form onSubmit={handleFormSubmit(onSubmit)} className="flex flex-col gap-4">
                   <div className="mb-2 rounded-lg bg-muted/30 p-3 text-sm flex flex-col gap-1 border border-border/50">
                     <div className="flex items-center justify-between">
                       <div>
@@ -393,35 +431,71 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <Label htmlFor="booking-name">Full Name</Label>
+                      <Label htmlFor="booking-name" className={cn(errors.name && "text-red-500")}>Full Name</Label>
                       <Input
                         id="booking-name"
-                        name="name"
                         placeholder="Sarah Jenkins"
-                        required
+                        {...register("name")}
+                        className={cn(
+                          "transition-all duration-300",
+                          errors.name
+                            ? "border-red-500 focus-visible:ring-red-500"
+                            : touchedFields.name && !errors.name
+                              ? "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
+                              : "border-border"
+                        )}
                       />
+                      {errors.name && (
+                        <p className="text-[10px] text-red-500 mt-0.5 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                          {errors.name.message}
+                        </p>
+                      )}
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <Label htmlFor="booking-phone">Phone</Label>
+                      <Label htmlFor="booking-phone" className={cn(errors.phone && "text-red-500")}>Phone</Label>
                       <Input
                         id="booking-phone"
-                        name="phone"
                         type="tel"
                         placeholder="(555) 000-0000"
-                        required
+                        {...register("phone")}
+                        className={cn(
+                          "transition-all duration-300",
+                          errors.phone
+                            ? "border-red-500 focus-visible:ring-red-500"
+                            : touchedFields.phone && !errors.phone
+                              ? "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
+                              : "border-border"
+                        )}
                       />
+                      {errors.phone && (
+                        <p className="text-[10px] text-red-500 mt-0.5 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                          {errors.phone.message}
+                        </p>
+                      )}
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="booking-email">Email</Label>
+                    <Label htmlFor="booking-email" className={cn(errors.email && "text-red-500")}>Email</Label>
                     <Input
                       id="booking-email"
-                      name="email"
                       type="email"
                       placeholder="sarah@example.com"
-                      required
+                      {...register("email")}
+                      className={cn(
+                        "transition-all duration-300",
+                        errors.email
+                          ? "border-red-500 focus-visible:ring-red-500"
+                          : touchedFields.email && !errors.email
+                            ? "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
+                            : "border-border"
+                      )}
                     />
+                    {errors.email && (
+                      <p className="text-[10px] text-red-500 mt-0.5 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                        {errors.email.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex flex-col gap-1.5">
@@ -430,9 +504,13 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                     </Label>
                     <Textarea
                       id="booking-message"
-                      name="message"
                       placeholder="Tell us about your whitening goals or any concerns..."
                       rows={3}
+                      {...register("message")}
+                      className={cn(
+                        "transition-all duration-300",
+                        touchedFields.message && !errors.message && "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
+                      )}
                     />
                   </div>
 
@@ -446,15 +524,21 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                       <ArrowLeft className="size-4" />
                       Back
                     </Button>
-                    <div className="flex gap-2">
+                    <div className="flex gap-3">
                       <Button
                         type="button"
-                        variant="outline"
                         onClick={() => handleClose(false)}
+                        className="h-12 px-8 rounded-full bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white font-bold tracking-wide shadow-lg transition-all hover:-translate-y-0.5"
                       >
                         Cancel
                       </Button>
-                      <Button type="submit" className="bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white">Confirm Appointment</Button>
+                      <Button
+                        type="submit"
+                        disabled={!isValid}
+                        className="h-12 px-8 rounded-full bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white font-bold tracking-wide shadow-lg disabled:opacity-30 transition-all hover:-translate-y-0.5"
+                      >
+                        Complete Booking
+                      </Button>
                     </div>
                   </div>
                 </form>

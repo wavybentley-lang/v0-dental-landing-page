@@ -48,9 +48,9 @@ This document outlines the strategy for implementing a comprehensive, real-time 
 - [x] Logic for identifying "Fully Booked" days
 
 ### Phase 3: Form Engineering
-- [ ] Create Zod schema for booking validation
-- [ ] Implement `react-hook-form` in the contact step
-- [ ] Add error handling and user feedback for invalid entries
+- [x] Create Zod schema for booking validation
+- [x] Implement `react-hook-form` in the contact step
+- [x] Add error handling and user feedback for invalid entries
 
 ### Phase 4: Waitlist Functionality
 - [ ] Detect "Fully Booked" state in the UI
