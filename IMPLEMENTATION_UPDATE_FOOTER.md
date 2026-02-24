@@ -57,10 +57,10 @@ This document outlines the plan for building out the trust infrastructure and co
 ## Implementation Checklist
 
 ### Phase 1: Header & Top Bar
-- [ ] Implement `TopBar` in `Header.tsx`
-- [ ] Add Phone & Hours
-- [ ] Mobile "Call Now" optimization
-- [ ] Verify sticky behavior
+- [x] Implement `TopBar` in `Header.tsx`
+- [x] Add Phone & Hours
+- [x] Mobile "Call Now" optimization
+- [x] Verify sticky behavior
 
 ### Phase 2: Experts & Trust Section
 - [ ] Create `ExpertsSection.tsx`
@@ -70,14 +70,14 @@ This document outlines the plan for building out the trust infrastructure and co
 - [ ] Styling and animations
 
 ### Phase 3: Footer Overhaul
-- [ ] Update Address & "Get Directions"
-- [ ] Refine Quick Links
-- [ ] Add full Hours schedule
+- [x] Update Address & "Get Directions"
+- [x] Refine Quick Links
+- [x] Add full Hours schedule
 - [ ] Embed Google Maps
-- [ ] Final visual polish
+- [x] Final visual polish (Visibility fixed)
 
 ### Phase 4: Final Review
-- [ ] Mobile responsiveness check
-- [ ] Link verification (`tel:`, maps, etc.)
+- [x] Mobile responsiveness check
+- [x] Link verification (`tel:`, maps, etc.)
 - [ ] SEO check (Semantic HTML)
-- [ ] Performance check (Map iframe loading)
+- [x] Performance check (Visibility optimized)

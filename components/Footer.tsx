@@ -24,18 +24,18 @@ export function Footer() {
   }
 
   return (
-    <footer className="w-full bg-navy text-white">
+    <footer className="w-full bg-[#1A1F2E] text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* About */}
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-2 group">
               <Sparkles className="size-5 text-gold group-hover:scale-110 transition-transform" />
-              <span className="text-lg font-bold">
+              <span className="text-lg font-bold text-white">
                 Bright<span className="text-gold">Smile</span>
               </span>
             </Link>
-            <p className="text-sm leading-relaxed text-white/70 italic">
+            <p className="text-sm leading-relaxed text-slate-300 italic">
               Professional teeth whitening clinic dedicated to helping you
               achieve the brightest, healthiest smile with safe, advanced
               technology.
@@ -53,14 +53,14 @@ export function Footer() {
                   {link.href.startsWith("/") ? (
                     <Link
                       href={link.href}
-                      className="text-sm text-white/70 transition-colors hover:text-gold"
+                      className="text-sm text-slate-300 transition-colors hover:text-gold hover:translate-x-1 inline-block"
                     >
                       {link.label}
                     </Link>
                   ) : (
                     <a
                       href={link.href}
-                      className="text-sm text-white/70 transition-colors hover:text-gold"
+                      className="text-sm text-slate-300 transition-colors hover:text-gold hover:translate-x-1 inline-block"
                     >
                       {link.label}
                     </a>
@@ -79,10 +79,10 @@ export function Footer() {
               {hours.map((h) => (
                 <li
                   key={h.day}
-                  className="flex justify-between text-sm text-white/70 border-b border-white/5 pb-1"
+                  className="flex justify-between text-sm text-slate-300 border-b border-white/5 pb-1"
                 >
                   <span>{h.day}</span>
-                  <span className="font-medium text-white/90">{h.time}</span>
+                  <span className="font-medium text-white">{h.time}</span>
                 </li>
               ))}
             </ul>
@@ -97,7 +97,7 @@ export function Footer() {
               <li>
                 <a
                   href="tel:+15550001234"
-                  className="flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-gold"
+                  className="flex items-center gap-2 text-sm text-slate-300 transition-colors hover:text-gold"
                 >
                   <Phone className="size-4 text-gold" />
                   (555) 000-1234
@@ -106,13 +106,13 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:hello@brightsmile.com"
-                  className="flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-gold"
+                  className="flex items-center gap-2 text-sm text-slate-300 transition-colors hover:text-gold"
                 >
                   <Mail className="size-4 text-gold" />
                   hello@brightsmile.com
                 </a>
               </li>
-              <li className="flex items-start gap-2 text-sm text-white/70">
+              <li className="flex items-start gap-2 text-sm text-slate-300">
                 <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
                 <span>123 Dental Ave, Suite 100<br />San Francisco, CA 94102</span>
               </li>
@@ -122,25 +122,25 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-slate-400">
             {"© 2026 Bright Smile Clinic. All rights reserved."}
           </p>
           <div className="flex items-center gap-6">
             <a
               href="#"
-              className="text-xs text-white/50 transition-colors hover:text-gold"
+              className="text-xs text-slate-400 transition-colors hover:text-gold"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-xs text-white/50 transition-colors hover:text-gold"
+              className="text-xs text-slate-400 transition-colors hover:text-gold"
             >
               Terms of Service
             </a>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1 text-xs text-white/50 transition-colors hover:text-gold group"
+              className="flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-gold group"
               aria-label="Back to top"
             >
               Back to Top
