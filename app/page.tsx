@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Header } from "@/components/Header"
 import { HeroSection } from "@/components/HeroSection"
+import { ExpertsSection } from "@/components/ExpertsSection"
 import { FeaturesSection } from "@/components/FeaturesSection"
 import { BeforeAfterSection } from "@/components/BeforeAfterSection"
 import { TestimonialSection } from "@/components/TestimonialSection"
@@ -21,6 +22,7 @@ export default function Home() {
       <Header onBookingClick={openBooking} />
       <main>
         <HeroSection onBookingClick={openBooking} />
+        <ExpertsSection />
         <FeaturesSection onBookingClick={openBooking} />
         <BeforeAfterSection onBookingClick={openBooking} />
         <TestimonialSection onBookingClick={openBooking} />
