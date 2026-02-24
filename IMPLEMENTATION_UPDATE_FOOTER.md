@@ -63,17 +63,17 @@ This document outlines the plan for building out the trust infrastructure and co
 - [x] Verify sticky behavior
 
 ### Phase 2: Experts & Trust Section
-- [ ] Create `ExpertsSection.tsx`
-- [ ] Add Provider data and Credentials
-- [ ] Implement Trust Bar badges
-- [ ] Integrate into `app/page.tsx`
-- [ ] Styling and animations
+- [x] Create `ExpertsSection.tsx`
+- [x] Add Provider data and Credentials
+- [x] Implement Trust Bar badges
+- [x] Integrate into `app/page.tsx`
+- [x] Styling and animations
 
 ### Phase 3: Footer Overhaul
 - [x] Update Address & "Get Directions"
 - [x] Refine Quick Links
 - [x] Add full Hours schedule
-- [ ] Embed Google Maps
+- [x] Embed Google Maps
 - [x] Final visual polish (Visibility fixed)
 
 ### Phase 4: Final Review
