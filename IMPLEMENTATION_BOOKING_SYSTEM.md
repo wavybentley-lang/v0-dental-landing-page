@@ -53,9 +53,9 @@ This document outlines the strategy for implementing a comprehensive, real-time 
 - [x] Add error handling and user feedback for invalid entries
 
 ### Phase 4: Waitlist Functionality
-- [ ] Detect "Fully Booked" state in the UI
-- [ ] Create "Join Waitlist" form and submission logic
-- [ ] Store waitlist entries separately from confirmed bookings
+- [x] Detect "Fully Booked" state in the UI
+- [x] Create "Join Waitlist" form and submission logic
+- [x] Store waitlist entries separately from confirmed bookings
 
 ### Phase 5: Admin Dashboard Base
 - [ ] Create `/admin` protected route (mocked auth)

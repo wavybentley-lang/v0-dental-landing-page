@@ -50,7 +50,7 @@ type BookingFormData = z.infer<typeof bookingSchema>
 const PACKAGES = [
   {
     id: "express",
-    name: "Express Whitening",
+    name: "Essential Whitening",
     price: 249,
     duration: "45 mins",
     durationMin: 45,
