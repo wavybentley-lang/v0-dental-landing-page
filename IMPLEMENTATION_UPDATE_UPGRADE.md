@@ -12,10 +12,10 @@ This document outlines the steps to elevate the Bright Smile Dental Clinic site 
 
 ## PROGRESS CHECKLIST
 
-### Phase 1: Foundation & Dependencies
-- [ ] Install `framer-motion` & `clsx` / `tailwind-merge` (if not present)
-- [ ] Add `.noise-overlay` and premium gradients to `globals.css`
-- [ ] Finalize Gold (`#C9A96E`) and Navy (`#1B2B4B`) variables in `:root`
+### Phase 1: Foundation & Dependencies (Complete)
+- [x] Integrate Tailwind Animation utilities (tw-animate-css)
+- [x] Add `.noise-overlay` and premium gradients to `globals.css`
+- [x] Finalize Gold (`#C9A96E`) and Navy (`#1B2B4B`) variables in `:root`
 
 ### Phase 2: Orchestrated Animations (Framer Motion)
 - [ ] **Hero Section**: Implement staggered text reveal and floating badges
@@ -41,9 +41,10 @@ This document outlines the steps to elevate the Bright Smile Dental Clinic site 
 
 ## TECHNICAL SPECIFICATIONS
 
-### Framer Motion Standards
-- Use `initial`, `animate`, and `whileInView` for reveals.
-- Prefers `spring` transitions for tactile feel, `tween` for opacity fades.
+### Tailwind Animation Standards
+- Use `animate-in` utilities with `fade-in`, `slide-in`, and `zoom-in`.
+- Orchestrate with `duration-*`, `delay-*`, and `fill-mode-both`.
+- Use custom keyframes in `globals.css` for complex sequences (e.g. `scroll-reveal`).
 - Respect `prefers-reduced-motion` settings.
 
 ### Visual Depth

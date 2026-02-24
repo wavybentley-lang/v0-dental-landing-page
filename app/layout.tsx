@@ -4,7 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import './globals.css'
 
 export const viewport: Viewport = {
-  themeColor: '#0052CC',
+  themeColor: '#1B2B4B',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased noise-overlay">
         {children}
         <SpeedInsights />
         <Analytics />

@@ -14,7 +14,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
     <section className="relative w-full overflow-hidden hero-gradient">
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col items-center gap-8 px-4 py-12 md:flex-row md:gap-12 md:px-6 md:py-16 lg:gap-16 lg:px-8 lg:py-20">
         {/* Text Content */}
-        <div className="flex max-w-xl flex-1 flex-col items-center text-center md:items-start md:text-left animate-fade-in">
+        <div className="flex max-w-xl flex-1 flex-col items-center text-center md:items-start md:text-left animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-both">
           <span className="section-label">
             Professional Whitening
           </span>
@@ -44,7 +44,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
         </div>
 
         {/* Hero Image */}
-        <div className="relative flex-1 animate-scale-in">
+        <div className="relative flex-1 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both">
           <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl shadow-lg md:max-w-none">
             <Image
               src="/images/hero.jpg"

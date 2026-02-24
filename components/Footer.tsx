@@ -24,7 +24,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="w-full bg-[#1A1F2E] text-white">
+    <footer className="w-full bg-navy text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Contact & About */}
@@ -118,7 +118,7 @@ export function Footer() {
               href="https://www.google.com/maps/dir//123+Dental+Ave,+Suite+100,+San+Francisco,+CA+94102"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-lg bg-gold px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-[#1A1F2E] hover:shadow-[0_0_15px_rgba(201,169,110,0.4)] active:scale-95 group"
+              className="flex items-center justify-center gap-2 rounded-lg bg-gold px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-navy hover:shadow-[0_0_15px_rgba(201,169,110,0.4)] active:scale-95 group"
             >
               <MapPin className="size-4 transition-transform group-hover:scale-110" />
               Get Directions

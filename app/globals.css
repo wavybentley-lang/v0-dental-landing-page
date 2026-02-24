@@ -11,42 +11,42 @@
   --card-foreground: #1A1F2E;
   --popover: #FFFFFF;
   --popover-foreground: #1A1F2E;
-  
+
   /* Primary (Radiant Blue - CTA & Accents) */
   --primary: #0052CC;
   --primary-foreground: #FFFFFF;
-  
+
   /* Secondary (Clinic Blue) */
   --secondary: #F1F5F9;
   --secondary-foreground: #1A1F2E;
-  
+
   /* Muted (Neutral Grays) */
   --muted: #E8E8E8;
   --muted-foreground: #6B7280;
-  
+
   /* Accent (Premium Highlight) */
   --accent: #0052CC;
   --accent-foreground: #FFFFFF;
-  
+
   /* Destructive */
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
-  
+
   /* UI Elements */
   --border: #E5E7EB;
   --input: #F3F4F6;
   --ring: #0052CC;
-  
+
   /* Chart Colors */
   --chart-1: #0052CC;
   --chart-2: #06B6D4;
   --chart-3: #8B5CF6;
   --chart-4: #EC4899;
   --chart-5: #F59E0B;
-  
+
   /* Spacing & Radius */
   --radius: 0.75rem;
-  
+
   /* Sidebar */
   --sidebar: #F9FAFB;
   --sidebar-foreground: #1A1F2E;
@@ -56,10 +56,14 @@
   --sidebar-accent-foreground: #1A1F2E;
   --sidebar-border: #E5E7EB;
   --sidebar-ring: #0052CC;
-  
+
   /* Glass Effect Support */
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.2);
+
+  /* World Class Brand Colors */
+  --gold: #C9A96E;
+  --navy: #1B2B4B;
 }
 
 .dark {
@@ -70,39 +74,39 @@
   --card-foreground: #F5F5F5;
   --popover: #1A1F2E;
   --popover-foreground: #F5F5F5;
-  
+
   /* Primary stays consistent */
   --primary: #3B82F6;
   --primary-foreground: #0F1419;
-  
+
   /* Secondary (Dark Clinic Blue) */
   --secondary: #1E293B;
   --secondary-foreground: #F5F5F5;
-  
+
   /* Muted */
   --muted: #374151;
   --muted-foreground: #D1D5DB;
-  
+
   /* Accent */
   --accent: #3B82F6;
   --accent-foreground: #0F1419;
-  
+
   /* Destructive */
   --destructive: #F87171;
   --destructive-foreground: #0F1419;
-  
+
   /* UI Elements */
   --border: #374151;
   --input: #1F2937;
   --ring: #3B82F6;
-  
+
   /* Chart Colors */
   --chart-1: #3B82F6;
   --chart-2: #06B6D4;
   --chart-3: #A78BFA;
   --chart-4: #F472B6;
   --chart-5: #FBBF24;
-  
+
   /* Sidebar */
   --sidebar: #1A1F2E;
   --sidebar-foreground: #F5F5F5;
@@ -112,10 +116,14 @@
   --sidebar-accent-foreground: #F5F5F5;
   --sidebar-border: #374151;
   --sidebar-ring: #3B82F6;
-  
+
   /* Glass Effect Dark Mode */
   --glass-bg: rgba(26, 31, 46, 0.6);
   --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* World Class Brand Colors */
+  --gold: #C9A96E;
+  --navy: #1B2B4B;
 }
 
 @theme inline {
@@ -158,6 +166,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  /* Brand Color Extensions */
+  --color-gold: var(--gold);
+  --color-navy: var(--navy);
+
   --animate-fade-in: fadeIn 0.6s ease-in-out;
   --animate-slide-up: slideUp 0.6s ease-out;
   --animate-scale-in: scaleIn 0.5s ease-out;
@@ -168,16 +180,18 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
 }
 
 @layer components {
+
   /* Glass Effect Cards */
   .glass-effect {
     background: var(--glass-bg);
@@ -185,20 +199,20 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
-  
+
   /* CTA Button Base */
   .cta-button {
     @apply bg-primary text-primary-foreground font-semibold py-3 px-8 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
   }
-  
+
   .cta-button:hover {
     filter: brightness(0.9);
   }
-  
+
   .cta-button:active {
     @apply scale-95;
   }
-  
+
   /* Glass CTA Variant */
   .cta-glass {
     background: var(--glass-bg);
@@ -208,71 +222,90 @@
     color: var(--primary);
     transition: all 0.2s;
   }
-  
+
   .cta-glass:hover {
     background: rgba(255, 255, 255, 0.85);
   }
-  
+
   /* Fade In Animation */
   @keyframes fadeIn {
     from {
       opacity: 0;
     }
+
     to {
       opacity: 1;
     }
   }
-  
+
   .animate-fade-in {
     animation: fadeIn 0.6s ease-in-out;
   }
-  
+
   /* Slide Up Animation */
   @keyframes slideUp {
     from {
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
+
   .animate-slide-up {
     animation: slideUp 0.6s ease-out;
   }
-  
+
   /* Scale In Animation */
   @keyframes scaleIn {
     from {
       opacity: 0;
       transform: scale(0.95);
     }
+
     to {
       opacity: 1;
       transform: scale(1);
     }
   }
-  
+
   .animate-scale-in {
     animation: scaleIn 0.5s ease-out;
   }
-  
+
   /* Scroll Reveal Effect */
   @keyframes scrollReveal {
     from {
       opacity: 0;
       transform: translateY(40px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
+
   .animate-scroll-reveal {
     animation: scrollReveal 0.8s ease-out forwards;
     opacity: 0;
+  }
+
+  /* Visual Depth Utilities */
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 9999;
   }
 }
