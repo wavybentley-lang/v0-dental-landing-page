@@ -3,6 +3,7 @@
 import { ShieldCheck, Palette, HeartPulse } from "lucide-react"
 import { FeatureCard } from "@/components/FeatureCard"
 import { Button } from "@/components/ui/button"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const features = [
   {
@@ -30,17 +31,23 @@ interface FeaturesSectionProps {
 }
 
 export function FeaturesSection({ onBookingClick }: FeaturesSectionProps) {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal()
+
   return (
     <section id="features" className="w-full bg-background py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
-        <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
+        <div
+          ref={headerRef}
+          className={`mx-auto mb-12 max-w-2xl text-center lg:mb-16 transition-all duration-1000 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+        >
           <span className="section-label">
             Why Choose Us
           </span>
-          <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="text-balance text-3xl font-bold text-navy md:text-4xl">
             Advanced Whitening Technology
           </h2>
-          <p className="mt-4 text-pretty text-muted-foreground">
+          <p className="mt-4 text-pretty text-muted-foreground lg:text-lg">
             Our clinic combines cutting-edge dental science with personalized
             care to deliver safe, long-lasting results.
           </p>

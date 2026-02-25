@@ -280,7 +280,7 @@
   @keyframes scrollReveal {
     from {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(30px);
     }
 
     to {
@@ -290,8 +290,25 @@
   }
 
   .animate-scroll-reveal {
-    animation: scrollReveal 0.8s ease-out forwards;
+    animation: scrollReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     opacity: 0;
+  }
+
+  /* Floating Animation */
+  @keyframes floating {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-floating {
+    animation: floating 3s ease-in-out infinite;
   }
 
   /* Visual Depth Utilities */

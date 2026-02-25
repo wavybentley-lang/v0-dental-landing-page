@@ -18,9 +18,9 @@ This document outlines the steps to elevate the Bright Smile Dental Clinic site 
 - [x] Finalize Gold (`#C9A96E`) and Navy (`#1B2B4B`) variables in `:root`
 
 ### Phase 2: Orchestrated Animations (Framer Motion)
-- [ ] **Hero Section**: Implement staggered text reveal and floating badges
-- [ ] **Features Section**: Add layout-shift and reveal-on-scroll animations
-- [ ] **Navigation**: Refine sticky transitions and hover states
+- [x] **Hero Section**: Implement staggered text reveal and floating badges
+- [x] **Features Section**: Add layout-shift and reveal-on-scroll animations
+- [x] **Navigation**: Refine sticky transitions and hover states
 
 ### Phase 3: Fluid Scrolling & Subtle Transitions
 - [ ] Implement Lenis (or similar) for momentum-based smooth scrolling
