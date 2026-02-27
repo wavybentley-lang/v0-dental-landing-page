@@ -22,9 +22,9 @@ export const ExpertsSection = () => {
     ]
 
     return (
-        <section className="py-24 bg-white overflow-hidden">
+        <section className="py-24 bg-background overflow-hidden">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-16 animate-fade-in-up">
+                <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-both">
                     <h2
                         className="text-navy text-center after:left-1/2 after:-translate-x-1/2"
                     >
@@ -34,13 +34,13 @@ export const ExpertsSection = () => {
 
                 <div className="max-w-4xl mx-auto">
                     <div
-                        className="premium-card p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center animate-fade-in-up [animation-delay:200ms]"
+                        className="premium-card p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both"
                     >
                         {/* Provider Profile Image Placeholder */}
-                        <div className="w-64 h-80 bg-muted rounded-lg overflow-hidden flex-shrink-0 relative group">
-                            <div className="absolute inset-0 bg-navy/5 group-hover:bg-navy/0 transition-colors duration-300" />
+                        <div className="w-64 h-80 bg-navy/5 rounded-lg overflow-hidden flex-shrink-0 relative group border border-gold/10 shadow-inner">
+                            <div className="absolute inset-0 bg-navy/5 group-hover:bg-navy/0 transition-colors duration-700 ease-out" />
                             <div className="w-full h-full flex items-center justify-center text-navy/20">
-                                <span className="text-sm font-medium uppercase tracking-widest text-center px-4">Professional Headshot</span>
+                                <span className="text-sm font-medium uppercase tracking-widest text-center px-4 font-sans">Professional Headshot</span>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@ export const ExpertsSection = () => {
                                 <p className="text-gold font-medium tracking-wide uppercase text-sm">{expert.role}</p>
                             </div>
 
-                            <p className="text-soft-charcoal mb-8 leading-relaxed text-lg">
+                            <p className="text-muted-foreground mb-8 leading-relaxed text-lg font-sans">
                                 {expert.bio}
                             </p>
 
@@ -58,7 +58,7 @@ export const ExpertsSection = () => {
                                 {expert.credentials.map((item, idx) => (
                                     <div key={idx} className="flex items-center gap-3 text-navy">
                                         <item.icon className="w-5 h-5 text-gold flex-shrink-0" />
-                                        <span className="font-medium">{item.text}</span>
+                                        <span className="font-medium font-sans">{item.text}</span>
                                     </div>
                                 ))}
                             </div>
@@ -72,12 +72,13 @@ export const ExpertsSection = () => {
                         {trustBadges.map((badge, idx) => (
                             <div
                                 key={idx}
-                                className="flex flex-col items-center text-center group cursor-default transition-transform duration-300 hover:-translate-y-2"
+                                className="flex flex-col items-center text-center group cursor-default transition-all duration-700 ease-out hover:-translate-y-2 animate-in fade-in zoom-in-95 fill-mode-both"
+                                style={{ animationDelay: `${600 + idx * 150}ms`, animationDuration: "1000ms" }}
                             >
-                                <div className="w-16 h-16 rounded-full bg-navy/5 flex items-center justify-center mb-4 group-hover:bg-teal-50 transition-colors duration-300">
-                                    <badge.icon className="w-8 h-8 text-[#008080] group-hover:scale-110 transition-all duration-300" />
+                                <div className="w-16 h-16 rounded-full bg-navy/5 flex items-center justify-center mb-4 group-hover:bg-gold/10 transition-colors duration-700 ease-out">
+                                    <badge.icon className="w-8 h-8 text-gold group-hover:scale-110 transition-all duration-700 ease-out" />
                                 </div>
-                                <span className="text-navy font-semibold text-sm uppercase tracking-wider">
+                                <span className="text-navy font-semibold text-sm uppercase tracking-wider font-sans">
                                     {badge.text}
                                 </span>
                             </div>

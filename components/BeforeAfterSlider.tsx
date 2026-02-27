@@ -105,26 +105,26 @@ export function BeforeAfterSlider({
         </div>
 
         <div
-          className="absolute top-0 bottom-0 w-1 bg-white shadow-lg transform -translate-x-1/2 transition-all"
+          className="absolute top-0 bottom-0 w-0.5 bg-gold/50 shadow-sm transform -translate-x-1/2 transition-all"
           style={{
             left: `${sliderPosition}%`,
           }}
         >
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-            <div className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-blue-500">
-              <div className="flex gap-1">
-                <div className="w-1 h-4 bg-blue-500 rounded-full" />
-                <div className="w-1 h-4 bg-blue-500 rounded-full" />
+            <div className="w-10 h-10 bg-white rounded-full shadow-xl flex items-center justify-center border border-gold/30 backdrop-blur-sm">
+              <div className="flex gap-1.5">
+                <div className="w-0.5 h-3 bg-gold rounded-full" />
+                <div className="w-0.5 h-3 bg-gold rounded-full" />
               </div>
             </div>
           </div>
         </div>
 
-        <span className="absolute left-3 top-3 rounded-md bg-black/50 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+        <span className="absolute left-3 top-3 rounded-md bg-navy/60 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md border border-white/10">
           Before
         </span>
 
-        <span className="absolute right-3 top-3 rounded-md bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
+        <span className="absolute right-3 top-3 rounded-md bg-gold px-3 py-1 text-xs font-semibold text-navy shadow-sm">
           After
         </span>
       </div>
