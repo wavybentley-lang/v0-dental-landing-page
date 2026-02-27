@@ -68,7 +68,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-gold">
               Quick Links
             </h4>
             <ul className="flex flex-col gap-2">
@@ -96,7 +96,7 @@ export function Footer() {
 
           {/* Hours */}
           <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-gold">
               Business Hours
             </h4>
             <ul className="flex flex-col gap-2">
@@ -118,7 +118,7 @@ export function Footer() {
               href="https://www.google.com/maps/dir//123+Dental+Ave,+Suite+100,+San+Francisco,+CA+94102"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-lg bg-gold px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-navy hover:shadow-[0_0_15px_rgba(201,169,110,0.4)] active:scale-95 group"
+              className="flex items-center justify-center gap-2 rounded-lg bg-gold px-4 py-3 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all hover:bg-white hover:text-navy hover:shadow-[0_0_15px_rgba(201,169,110,0.4)] active:scale-95 group"
             >
               <MapPin className="size-4 transition-transform group-hover:scale-110" />
               Get Directions

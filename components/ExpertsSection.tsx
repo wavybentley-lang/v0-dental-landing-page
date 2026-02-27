@@ -40,14 +40,14 @@ export const ExpertsSection = () => {
                         <div className="w-64 h-80 bg-navy/5 rounded-lg overflow-hidden flex-shrink-0 relative group border border-gold/10 shadow-inner">
                             <div className="absolute inset-0 bg-navy/5 group-hover:bg-navy/0 transition-colors duration-700 ease-out" />
                             <div className="w-full h-full flex items-center justify-center text-navy/20">
-                                <span className="text-sm font-medium uppercase tracking-widest text-center px-4 font-sans">Professional Headshot</span>
+                                <span className="text-sm font-semibold uppercase tracking-[0.25em] text-center px-4 font-sans">Professional Headshot</span>
                             </div>
                         </div>
 
                         <div className="flex-1">
                             <div className="mb-6 text-center md:text-left">
-                                <h3 className="text-3xl font-serif text-navy mb-1 uppercase tracking-tight">{expert.name}</h3>
-                                <p className="text-gold font-medium tracking-wide uppercase text-sm">{expert.role}</p>
+                                <h3 className="text-3xl font-bold font-serif text-navy mb-1 uppercase tracking-tight">{expert.name}</h3>
+                                <p className="text-gold font-semibold tracking-[0.25em] uppercase text-sm">{expert.role}</p>
                             </div>
 
                             <p className="text-muted-foreground mb-8 leading-relaxed text-lg font-sans">
@@ -78,7 +78,7 @@ export const ExpertsSection = () => {
                                 <div className="w-16 h-16 rounded-full bg-navy/5 flex items-center justify-center mb-4 group-hover:bg-gold/10 transition-colors duration-700 ease-out">
                                     <badge.icon className="w-8 h-8 text-gold group-hover:scale-110 transition-all duration-700 ease-out" />
                                 </div>
-                                <span className="text-navy font-semibold text-sm uppercase tracking-wider font-sans">
+                                <span className="text-navy font-bold text-sm uppercase tracking-[0.25em] font-sans">
                                     {badge.text}
                                 </span>
                             </div>

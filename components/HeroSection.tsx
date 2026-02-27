@@ -18,7 +18,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
           <span className="section-label animate-in fade-in slide-in-from-bottom-3 duration-700 fill-mode-both">
             Professional Whitening
           </span>
-          <h1 className="text-balance leading-tight text-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 fill-mode-both">
+          <h1 className="text-balance text-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 fill-mode-both">
             Transform Your Smile with <span className="text-gold italic">Professional Whitening</span>
           </h1>
           <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl font-sans animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-both">
@@ -58,7 +58,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
           {/* Floating stat badge */}
           <div className="absolute -bottom-4 left-4 rounded-xl border border-gold/20 bg-background/95 px-6 py-4 shadow-2xl backdrop-blur-md md:-left-6 md:bottom-8 animate-floating">
             <p className="text-3xl font-bold text-navy font-mono">8+</p>
-            <p className="text-xs font-semibold text-gold uppercase tracking-wider">Shades Whiter</p>
+            <p className="text-xs font-semibold text-gold uppercase tracking-[0.25em]">Shades Whiter</p>
           </div>
         </div>
       </div>

@@ -36,10 +36,10 @@ export function ContactPageContent() {
         <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16 lg:px-8 lg:py-20">
           {/* Page Header */}
           <div className="mb-12 max-w-2xl">
-            <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-primary">
+            <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-[0.25em] text-primary">
               Contact Us
             </span>
-            <h1 className="text-balance text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">
+            <h1 className="text-balance text-3xl font-bold text-foreground md:text-4xl lg:text-5xl tracking-tight">
               {"We'd Love to Hear From You"}
             </h1>
             <p className="mt-4 text-pretty text-lg text-muted-foreground">

@@ -18,7 +18,7 @@ export function CTASection({ onBookingClick, onLearnMoreClick }: CTASectionProps
         className={`mx-auto max-w-3xl px-4 text-center transition-all duration-700 md:px-6 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
       >
-        <h2 className="text-balance text-3xl font-light text-secondary-foreground md:text-4xl lg:text-5xl">
+        <h2 className="text-balance text-3xl font-bold text-secondary-foreground md:text-4xl lg:text-5xl tracking-tight">
           Ready to Brighten Your <span className="text-gold italic">Smile?</span>
         </h2>
         <p className="mt-6 text-pretty text-lg text-secondary-foreground/80 font-sans">

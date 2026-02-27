@@ -114,11 +114,13 @@
   }
 
   h1 {
-    @apply text-5xl md:text-7xl font-light tracking-wider;
+    @apply text-5xl md:text-7xl font-bold tracking-tight leading-[1.1];
+    letter-spacing: -0.03em;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl font-normal relative pb-4;
+    @apply text-3xl md:text-4xl font-bold relative pb-4 tracking-tight leading-snug;
+    letter-spacing: -0.03em;
   }
 
   h2::after {
@@ -134,7 +136,8 @@
 
 @layer components {
   .section-label {
-    @apply text-gold text-xs uppercase tracking-[0.2em] font-medium mb-4 block;
+    @apply text-gold text-xs uppercase font-semibold mb-4 block;
+    letter-spacing: 0.25em;
   }
 
   .hero-gradient {
@@ -154,6 +157,7 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
