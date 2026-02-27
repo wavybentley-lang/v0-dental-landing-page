@@ -331,7 +331,7 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                         modifiersClassNames={{
                           booked: "text-muted-foreground opacity-60 bg-muted/20 relative"
                         }}
-                        className="rounded-2xl border-none bg-white shadow-xl p-6 mx-auto"
+                        className="rounded-2xl border-none bg-card shadow-xl p-6 mx-auto"
                         classNames={{
                           selected: "!bg-[#C9A96E] !text-[#1B2B4B] !font-bold rounded-lg",
                           day: "hover:!bg-[#C9A96E] hover:!text-[#1B2B4B] transition-all rounded-lg relative",
@@ -411,7 +411,7 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                               "flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all duration-300",
                               selectedWindow === window.id
                                 ? "border-[#C9A96E] bg-[#C9A96E]/10"
-                                : "border-border bg-white hover:border-[#C9A96E]/30"
+                                : "border-border bg-card hover:border-[#C9A96E]/30"
                             )}
                           >
                             <window.icon className={cn("size-6", selectedWindow === window.id ? "text-[#C9A96E]" : "text-muted-foreground")} />
@@ -448,7 +448,7 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                                     "px-2 py-3 text-xs font-bold rounded-xl border-2 transition-all duration-200",
                                     selectedTime === time
                                       ? "border-[#C9A96E] bg-[#C9A96E] text-[#1B2B4B] shadow-md scale-[1.02]"
-                                      : "border-[#1B2B4B]/20 bg-white text-[#1B2B4B] hover:border-[#1B2B4B]"
+                                      : "border-[#1B2B4B]/20 bg-card text-[#1B2B4B] hover:border-[#1B2B4B]"
                                   )}
                                 >
                                   {time}

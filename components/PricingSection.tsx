@@ -60,13 +60,13 @@ export function PricingSection({ onBookingClick }: PricingSectionProps) {
     <section id="pricing" className="w-full bg-secondary py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
-          <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-primary">
+          <span className="section-label">
             Pricing
           </span>
-          <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="text-balance text-3xl font-bold text-secondary-foreground md:text-4xl">
             Transparent Pricing
           </h2>
-          <p className="mt-4 text-pretty text-muted-foreground">
+          <p className="mt-4 text-pretty text-secondary-foreground/80 font-sans">
             Choose the plan that fits your goals. All packages include our
             safety guarantee.
           </p>

@@ -4,29 +4,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Core Colors - Dental Clinic Theme */
-  --background: #FFFFFF;
-  --foreground: #1A1F2E;
-  --card: #F9FAFB;
-  --card-foreground: #1A1F2E;
+  /* Core Colors - Elegant Nautical Theme */
+  --background: #FAFAF7;
+  /* Warm white */
+  --foreground: #1B2B4B;
+  /* Navy */
+  --card: #FFFFFF;
+  --card-foreground: #1B2B4B;
   --popover: #FFFFFF;
-  --popover-foreground: #1A1F2E;
+  --popover-foreground: #1B2B4B;
 
-  /* Primary (Radiant Blue - CTA & Accents) */
-  --primary: #0052CC;
-  --primary-foreground: #FFFFFF;
+  /* Primary (Gold - Luxury & Warmth) */
+  --primary: #C9A96E;
+  --primary-foreground: #1B2B4B;
 
-  /* Secondary (Clinic Blue) */
-  --secondary: #F1F5F9;
-  --secondary-foreground: #1A1F2E;
+  /* Secondary (Navy - Trust & Professionalism) */
+  --secondary: #1B2B4B;
+  --secondary-foreground: #FAFAF7;
 
   /* Muted (Neutral Grays) */
-  --muted: #E8E8E8;
+  --muted: #F1F1F1;
   --muted-foreground: #6B7280;
 
-  /* Accent (Premium Highlight) */
-  --accent: #0052CC;
-  --accent-foreground: #FFFFFF;
+  /* Accent (Gold - Premium Highlight) */
+  --accent: #C9A96E;
+  --accent-foreground: #1B2B4B;
 
   /* Destructive */
   --destructive: #DC2626;
@@ -35,27 +37,27 @@
   /* UI Elements */
   --border: #E5E7EB;
   --input: #F3F4F6;
-  --ring: #0052CC;
+  --ring: #C9A96E;
 
   /* Chart Colors */
-  --chart-1: #0052CC;
-  --chart-2: #06B6D4;
-  --chart-3: #8B5CF6;
-  --chart-4: #EC4899;
-  --chart-5: #F59E0B;
+  --chart-1: #C9A96E;
+  --chart-2: #1B2B4B;
+  --chart-3: #2D2D2D;
+  --chart-4: #F0EBE0;
+  --chart-5: #FAFAF7;
 
   /* Spacing & Radius */
   --radius: 0.75rem;
 
   /* Sidebar */
-  --sidebar: #F9FAFB;
-  --sidebar-foreground: #1A1F2E;
-  --sidebar-primary: #0052CC;
-  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1B2B4B;
+  --sidebar-primary: #C9A96E;
+  --sidebar-primary-foreground: #1B2B4B;
   --sidebar-accent: #F1F5F9;
-  --sidebar-accent-foreground: #1A1F2E;
+  --sidebar-accent-foreground: #1B2B4B;
   --sidebar-border: #E5E7EB;
-  --sidebar-ring: #0052CC;
+  --sidebar-ring: #C9A96E;
 
   /* Glass Effect Support */
   --glass-bg: rgba(255, 255, 255, 0.7);
@@ -67,58 +69,58 @@
 }
 
 .dark {
-  /* Dark Mode - Professional Medical Theme */
-  --background: #0F1419;
-  --foreground: #F5F5F5;
-  --card: #1A1F2E;
-  --card-foreground: #F5F5F5;
-  --popover: #1A1F2E;
-  --popover-foreground: #F5F5F5;
+  /* Dark Mode - Luxury Deep Navy Theme */
+  --background: #1B2B4B;
+  --foreground: #FAFAF7;
+  --card: #203152;
+  --card-foreground: #FAFAF7;
+  --popover: #203152;
+  --popover-foreground: #FAFAF7;
 
-  /* Primary stays consistent */
-  --primary: #3B82F6;
-  --primary-foreground: #0F1419;
+  /* Primary (Gold) */
+  --primary: #C9A96E;
+  --primary-foreground: #1B2B4B;
 
-  /* Secondary (Dark Clinic Blue) */
-  --secondary: #1E293B;
-  --secondary-foreground: #F5F5F5;
+  /* Secondary (White) */
+  --secondary: #FAFAF7;
+  --secondary-foreground: #1B2B4B;
 
   /* Muted */
-  --muted: #374151;
-  --muted-foreground: #D1D5DB;
+  --muted: #2d3e5d;
+  --muted-foreground: #94a3b8;
 
   /* Accent */
-  --accent: #3B82F6;
-  --accent-foreground: #0F1419;
+  --accent: #C9A96E;
+  --accent-foreground: #1B2B4B;
 
   /* Destructive */
-  --destructive: #F87171;
-  --destructive-foreground: #0F1419;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #FAFAF7;
 
   /* UI Elements */
-  --border: #374151;
-  --input: #1F2937;
-  --ring: #3B82F6;
+  --border: #2d3e5d;
+  --input: #2d3e5d;
+  --ring: #C9A96E;
 
   /* Chart Colors */
-  --chart-1: #3B82F6;
-  --chart-2: #06B6D4;
+  --chart-1: #C9A96E;
+  --chart-2: #FAFAF7;
   --chart-3: #A78BFA;
   --chart-4: #F472B6;
   --chart-5: #FBBF24;
 
   /* Sidebar */
-  --sidebar: #1A1F2E;
-  --sidebar-foreground: #F5F5F5;
-  --sidebar-primary: #3B82F6;
-  --sidebar-primary-foreground: #0F1419;
-  --sidebar-accent: #1E293B;
-  --sidebar-accent-foreground: #F5F5F5;
-  --sidebar-border: #374151;
-  --sidebar-ring: #3B82F6;
+  --sidebar: #203152;
+  --sidebar-foreground: #FAFAF7;
+  --sidebar-primary: #C9A96E;
+  --sidebar-primary-foreground: #1B2B4B;
+  --sidebar-accent: #2d3e5d;
+  --sidebar-accent-foreground: #FAFAF7;
+  --sidebar-border: #2d3e5d;
+  --sidebar-ring: #C9A96E;
 
   /* Glass Effect Dark Mode */
-  --glass-bg: rgba(26, 31, 46, 0.6);
+  --glass-bg: rgba(27, 43, 75, 0.6);
   --glass-border: rgba(255, 255, 255, 0.1);
 
   /* World Class Brand Colors */
@@ -170,10 +172,10 @@
   --color-gold: var(--gold);
   --color-navy: var(--navy);
 
-  --animate-fade-in: fadeIn 0.6s ease-in-out;
-  --animate-slide-up: slideUp 0.6s ease-out;
-  --animate-scale-in: scaleIn 0.5s ease-out;
-  --animate-scroll-reveal: scrollReveal 0.8s ease-out forwards;
+  --animate-fade-in: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-up: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-scale-in: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-scroll-reveal: scrollReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @layer base {
@@ -232,6 +234,31 @@
     background: rgba(255, 255, 255, 0.85);
   }
 
+  /* Premium Section Label */
+  .section-label {
+    @apply text-gold text-xs uppercase tracking-[0.2em] font-medium mb-4 block;
+  }
+
+  /* Premium Card Styles */
+  .premium-card {
+    @apply bg-white rounded-xl border border-gold/10 transition-all duration-700 ease-out;
+    box-shadow: 0 4px 20px -2px rgba(201, 169, 110, 0.1);
+  }
+
+  .premium-card:hover {
+    @apply -translate-y-1.5 border-gold/20;
+    box-shadow: 0 8px 30px rgba(201, 169, 110, 0.15);
+  }
+
+  /* Hero Gradient Background */
+  .hero-gradient {
+    background: linear-gradient(180deg, #FAFAF7 0%, #F0EBE0 100%);
+  }
+
+  .dark .hero-gradient {
+    background: linear-gradient(180deg, #1B2B4B 0%, #16223b 100%);
+  }
+
   /* Fade In Animation */
   @keyframes fadeIn {
     from {
@@ -241,10 +268,6 @@
     to {
       opacity: 1;
     }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.6s ease-in-out;
   }
 
   /* Slide Up Animation */
@@ -260,10 +283,6 @@
     }
   }
 
-  .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
-  }
-
   /* Scale In Animation */
   @keyframes scaleIn {
     from {
@@ -277,10 +296,6 @@
     }
   }
 
-  .animate-scale-in {
-    animation: scaleIn 0.5s ease-out;
-  }
-
   /* Scroll Reveal Effect */
   @keyframes scrollReveal {
     from {
@@ -292,11 +307,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  .animate-scroll-reveal {
-    animation: scrollReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    opacity: 0;
   }
 
   /* Floating Animation */

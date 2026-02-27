@@ -18,10 +18,10 @@ export function CTASection({ onBookingClick, onLearnMoreClick }: CTASectionProps
         className={`mx-auto max-w-3xl px-4 text-center transition-all duration-700 md:px-6 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
       >
-        <h2 className="text-balance text-3xl font-light text-white md:text-4xl lg:text-5xl">
+        <h2 className="text-balance text-3xl font-light text-secondary-foreground md:text-4xl lg:text-5xl">
           Ready to Brighten Your <span className="text-gold italic">Smile?</span>
         </h2>
-        <p className="mt-6 text-pretty text-lg text-white/80 font-sans">
+        <p className="mt-6 text-pretty text-lg text-secondary-foreground/80 font-sans">
           Schedule your free consultation today and take the first step towards
           your dream smile.
         </p>
@@ -35,7 +35,7 @@ export function CTASection({ onBookingClick, onLearnMoreClick }: CTASectionProps
           </Button>
           <a
             href="/contact"
-            className="text-sm font-medium text-white/70 border-b border-white/20 transition-all hover:text-white hover:border-white"
+            className="text-sm font-medium text-secondary-foreground/70 border-b border-secondary-foreground/20 transition-all hover:text-secondary-foreground hover:border-secondary-foreground"
           >
             {"Questions? Contact Us"}
           </a>
