@@ -62,6 +62,7 @@
   /* Glass Effect Support */
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: 12px;
 
   /* World Class Brand Colors */
   --gold: #C9A96E;
@@ -180,7 +181,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
 
   body {
@@ -188,12 +189,13 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
+    /* Disabled to prevent conflict with Lenis library */
   }
 
   /* Subtle Transition Standards */
   .transition-subtle {
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
 
@@ -203,8 +205,7 @@
   .glass-effect {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(var(--glass-blur));
   }
 
   /* CTA Button Base */
@@ -224,8 +225,7 @@
   .cta-glass {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(var(--glass-blur));
     color: var(--primary);
     transition: all 0.2s;
   }
@@ -241,7 +241,7 @@
 
   /* Premium Card Styles */
   .premium-card {
-    @apply bg-white rounded-xl border border-gold/10 transition-all duration-700 ease-out;
+    @apply bg-card rounded-xl border border-gold/10 transition-all duration-700 ease-out;
     box-shadow: 0 4px 20px -2px rgba(201, 169, 110, 0.1);
   }
 
@@ -338,6 +338,6 @@
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
     opacity: 0.05;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 50;
   }
 }
