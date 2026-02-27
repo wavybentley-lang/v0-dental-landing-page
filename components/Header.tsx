@@ -38,7 +38,7 @@ export function Header({ onBookingClick }: HeaderProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-500 ${scrolled
+      className={`sticky top-0 z-50 w-full transition-all duration-700 ease-in-out ${scrolled
         ? "bg-white/95 backdrop-blur-md border-b border-gold/10 shadow-xl"
         : "bg-white border-b border-slate-100"
         }`}
@@ -86,10 +86,10 @@ export function Header({ onBookingClick }: HeaderProps) {
             <a
               key={link.href}
               href={link.href}
-              className="relative px-3 py-2 text-sm font-bold text-navy/80 transition-colors hover:text-gold group"
+              className="relative px-3 py-2 text-sm font-bold text-navy/80 transition-all duration-700 ease-out hover:text-gold group"
             >
               {link.label}
-              <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-gold scale-x-0 transition-transform group-hover:scale-x-100" />
+              <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-gold scale-x-0 transition-transform duration-700 ease-out group-hover:scale-x-100" />
             </a>
           ))}
         </nav>

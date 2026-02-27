@@ -36,7 +36,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
             </Button>
             <Link
               href="/contact"
-              className="text-sm font-semibold text-navy/70 border-b border-navy/20 transition-all hover:text-navy hover:border-gold hover:border-b-2"
+              className="text-sm font-semibold text-navy/70 border-b border-navy/20 transition-all duration-700 ease-out hover:text-navy hover:border-gold hover:border-b-2"
             >
               {"Questions? Contact Sarah"}
             </Link>

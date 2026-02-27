@@ -188,6 +188,11 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Subtle Transition Standards */
+  .transition-subtle {
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 }
 
 @layer components {

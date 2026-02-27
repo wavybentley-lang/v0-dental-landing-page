@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SmoothScroll } from '@/components/SmoothScroll'
 import './globals.css'
 
 export const viewport: Viewport = {
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased noise-overlay">
+        <SmoothScroll />
         {children}
         <SpeedInsights />
         <Analytics />

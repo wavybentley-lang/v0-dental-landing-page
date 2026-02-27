@@ -20,7 +20,7 @@ export function FeatureCard({ icon, title, description, delay = 0 }: FeatureCard
         }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
+      <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-all duration-700 ease-out group-hover:scale-110 group-hover:bg-primary/20">
         {icon}
       </div>
       <h3 className="mb-2 text-lg font-semibold text-foreground">{title}</h3>

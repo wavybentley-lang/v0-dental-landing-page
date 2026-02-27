@@ -23,9 +23,9 @@ This document outlines the steps to elevate the Bright Smile Dental Clinic site 
 - [x] **Navigation**: Refine sticky transitions and hover states
 
 ### Phase 3: Fluid Scrolling & Subtle Transitions
-- [ ] Implement Lenis (or similar) for momentum-based smooth scrolling
-- [ ] Refine all hover transitions to be "subtle" (600ms+ timing with ease-out)
-- [ ] Refine `ui/button.tsx` with elegant, slow-fade hover states
+- [x] Implement Lenis (or similar) for momentum-based smooth scrolling
+- [x] Refine all hover transitions to be "subtle" (600ms+ timing with ease-out)
+- [x] Refine `ui/button.tsx` with elegant, slow-fade hover states
 
 ### Phase 4: Component Polish
 - [ ] **Before/After**: Update slider to use Gold/Navy theme with an elegant, simple handle
