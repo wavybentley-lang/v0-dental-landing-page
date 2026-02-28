@@ -14,10 +14,10 @@ This document outlines the next phase of visual refinements for the Bright Smile
 ## PROGRESS CHECKLIST
 
 ### Phase 1: High-Precision Typography & Spacing
-- [ ] Implement **Optical Kerning** in `globals.css`:
+- [x] Implement **Optical Kerning** in `globals.css`:
   - Tight tracking (`tracking-tight`) for `h1` and `h2`.
   - Wide tracking (`tracking-[0.2em]`) for labels and uppercase tags.
-- [ ] Audit line-heights for maximum readability across all screen sizes.
+- [x] Audit line-heights for maximum readability across all screen sizes.
 
 ### Phase 2: Visual Atmospheric Depth
 - [ ] Implement **`MeshGradient.tsx`**: Add a subtle, slow-moving multi-color background to the Hero section.
