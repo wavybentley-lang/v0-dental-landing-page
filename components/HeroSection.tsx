@@ -1,25 +1,52 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { AvailabilityCounter } from "@/components/AvailabilityCounter"
 
 interface HeroSectionProps {
   onBookingClick: () => void
 }
 
+const headlines = [
+  "Transform Your Smile with Professional Whitening",
+  "Get 8 Shades Whiter for Your Brightest Smile",
+  "Smile with Confidence: Premium Care",
+  "The Gold Standard for Your Perfect Smile"
+]
+
 export function HeroSection({ onBookingClick }: HeroSectionProps) {
+  const [headline, setHeadline] = useState(headlines[0])
+
+  useEffect(() => {
+    // Basic A/B testing: Randomly select a headline on mount
+    const randomIndex = Math.floor(Math.random() * headlines.length)
+    setHeadline(headlines[randomIndex])
+  }, [])
+
   return (
     <section className="relative w-full overflow-hidden hero-gradient">
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col items-center gap-8 px-4 py-12 md:flex-row md:gap-12 md:px-6 md:py-16 lg:gap-16 lg:px-8 lg:py-20">
         {/* Text Content */}
         <div className="flex max-w-xl flex-1 flex-col items-center text-center md:items-start md:text-left">
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-700 fill-mode-both mb-4">
+            <AvailabilityCounter />
+          </div>
           <span className="section-label animate-in fade-in slide-in-from-bottom-3 duration-700 fill-mode-both">
             Professional Whitening
           </span>
-          <h1 className="text-balance text-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 fill-mode-both">
-            Transform Your Smile with <span className="text-gold italic">Professional Whitening</span>
+          <h1 className="text-balance text-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 fill-mode-both min-h-[2.5em] md:min-h-[2em]">
+            {headline.split("Smile").map((part, i, arr) => (
+              <span key={i}>
+                {part}
+                {i < arr.length - 1 && (
+                  <span className="text-gold italic">Smile</span>
+                )}
+              </span>
+            ))}
           </h1>
           <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl font-sans animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-both">
             Achieve 8+ shades brighter in just one session. Our enamel-safe

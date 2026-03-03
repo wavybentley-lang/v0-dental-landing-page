@@ -10,28 +10,37 @@ interface BeforeAfterSectionProps {
 
 const patients = [
   {
-    patientName: "Sarah",
+    patientName: "Sarah M.",
     shadeImprovement: "8 Shades Whiter",
     beforeImage:
       "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80",
     afterImage:
       "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&q=80",
+    story: "Sarah wanted a bright smile for her wedding. In just 60 minutes, we achieved a transformation that exceeded her expectations. She felt confident and ready for her big day.",
+    treatment: "Signature Whitening",
+    duration: "60 Mins"
   },
   {
-    patientName: "Mark",
+    patientName: "Mark T.",
     shadeImprovement: "6 Shades Whiter",
     beforeImage:
       "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80",
     afterImage:
       "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&q=80",
+    story: "As a coffee lover, Mark noticed significant staining over the years. Our enamel-safe treatment removed years of stains while maintaining natural look.",
+    treatment: "Stain Removal Focus",
+    duration: "45 Mins"
   },
   {
-    patientName: "Amanda",
+    patientName: "Amanda R.",
     shadeImprovement: "7 Shades Whiter",
     beforeImage:
       "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80",
     afterImage:
       "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&q=80",
+    story: "Amanda had sensitive teeth and was worried about pain. We used our specialized Gentle Care formula, and she experienced zero sensitivity during or after the session.",
+    treatment: "Gentle Care Whitening",
+    duration: "75 Mins"
   },
 ]
 
@@ -58,20 +67,34 @@ export function BeforeAfterSection({ onBookingClick }: BeforeAfterSectionProps) 
           className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
             }`}
         >
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
             {patients.map((patient) => (
-              <BeforeAfterSlider
-                key={patient.patientName}
-                patientName={patient.patientName}
-                shadeImprovement={patient.shadeImprovement}
-                beforeImage={patient.beforeImage}
-                afterImage={patient.afterImage}
-              />
+              <div key={patient.patientName} className="flex flex-col">
+                <BeforeAfterSlider
+                  patientName={patient.patientName}
+                  shadeImprovement={patient.shadeImprovement}
+                  beforeImage={patient.beforeImage}
+                  afterImage={patient.afterImage}
+                />
+                <div className="mt-6 flex flex-col gap-3">
+                  <div className="flex gap-2">
+                    <span className="rounded-full bg-gold/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gold border border-gold/20">
+                      {patient.treatment}
+                    </span>
+                    <span className="rounded-full bg-navy/5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-navy/60 border border-navy/10">
+                      {patient.duration}
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-muted-foreground italic">
+                    "{patient.story}"
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <Button size="lg" onClick={onBookingClick}>
+          <div className="mt-16 text-center">
+            <Button size="lg" onClick={onBookingClick} className="bg-navy hover:bg-navy/90 text-white">
               Schedule Your Transformation
             </Button>
           </div>

@@ -2,6 +2,7 @@
 
 import { TestimonialCard } from "@/components/TestimonialCard"
 import { Button } from "@/components/ui/button"
+import { VideoTestimonial } from "@/components/VideoTestimonial"
 
 const testimonials = [
   {
@@ -33,6 +34,19 @@ const testimonials = [
   },
 ]
 
+const videoStories = [
+  {
+    patientName: "James L.",
+    thumbnail: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder
+  },
+  {
+    patientName: "Emma S.",
+    thumbnail: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=800&q=80",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder
+  }
+]
+
 interface TestimonialSectionProps {
   onBookingClick: () => void
 }
@@ -43,14 +57,25 @@ export function TestimonialSection({ onBookingClick }: TestimonialSectionProps) 
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
           <span className="section-label">
-            Testimonials
+            Patient Stories
           </span>
           <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
-            What Our Customers Say
+            Success Stories in Motion
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground font-sans">
-            Join hundreds of happy patients who transformed their smiles with us.
+            Hear directly from our patients about their smile transformation journey.
           </p>
+        </div>
+
+        {/* Video Testimonials */}
+        <div className="mb-20 grid gap-8 md:grid-cols-2">
+          {videoStories.map((v) => (
+            <VideoTestimonial key={v.patientName} {...v} />
+          ))}
+        </div>
+
+        <div className="mx-auto mb-12 max-w-2xl text-center">
+          <h3 className="text-2xl font-bold text-foreground">What Our Customers Say</h3>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

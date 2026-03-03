@@ -23,13 +23,13 @@ This plan outlines the priority implementation order for the dental landing page
   - Implement a popup or overlay triggered when a user is about to leave.
 
 ## 🚀 Long Term (Optimize Over Time)
-- [ ] **A/B test different headlines**
+- [x] **A/B test different headlines**
   - Experiment with various hook lines to improve conversion.
-- [ ] **Add video testimonials**
+- [x] **Add video testimonials**
   - Integrate social proof through video content.
-- [ ] **Implement live availability counter**
+- [x] **Implement live availability counter**
   - Add urgency with real-time slot availability.
-- [ ] **Build before/after gallery with patient stories**
+- [x] **Build before/after gallery with patient stories**
   - Expand the gallery with detailed narrative case studies.
 
 ---
@@ -49,7 +49,7 @@ This plan outlines the priority implementation order for the dental landing page
 - [x] Exit-intent logic implemented
 
 ### Phase 3: Long Term
-- [ ] A/B testing framework set up
-- [ ] Video testimonials integrated
-- [ ] Live counter functional
-- [ ] Patient stories gallery built
+- [x] A/B testing framework set up
+- [x] Video testimonials integrated
+- [x] Live counter functional
+- [x] Patient stories gallery built
