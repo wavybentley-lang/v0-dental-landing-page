@@ -1,11 +1,13 @@
 "use client"
 
+import Image from "next/image"
 import { CheckCircle, ShieldCheck, Star, Award, GraduationCap, Briefcase } from "lucide-react"
 
 export const ExpertsSection = () => {
     const expert = {
         name: "Dr. Jane Smith",
         role: "Lead Clinician",
+        image: "/images/expert-jane-smith.png",
         bio: "With over 15 years of experience in restorative and cosmetic dentistry, Dr. Smith is dedicated to providing personalized care and creating beautiful, healthy smiles for all her patients.",
         credentials: [
             { icon: CheckCircle, text: "Board Certified" },
@@ -36,12 +38,16 @@ export const ExpertsSection = () => {
                     <div
                         className="premium-card p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both"
                     >
-                        {/* Provider Profile Image Placeholder */}
-                        <div className="w-64 h-80 bg-navy/5 rounded-lg overflow-hidden flex-shrink-0 relative group border border-gold/10 shadow-inner">
+                        {/* Provider Profile Image */}
+                        <div className="w-64 h-80 bg-navy/5 rounded-lg overflow-hidden flex-shrink-0 relative group border border-gold/10 shadow-xl">
+                            <Image
+                                src={expert.image}
+                                alt={expert.name}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                                sizes="(max-width: 768px) 100vw, 256px"
+                            />
                             <div className="absolute inset-0 bg-navy/5 group-hover:bg-navy/0 transition-colors duration-700 ease-out" />
-                            <div className="w-full h-full flex items-center justify-center text-navy/20">
-                                <span className="text-sm font-semibold uppercase tracking-[0.25em] text-center px-4 font-sans">Professional Headshot</span>
-                            </div>
                         </div>
 
                         <div className="flex-1">

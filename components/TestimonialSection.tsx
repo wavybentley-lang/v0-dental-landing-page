@@ -11,6 +11,7 @@ const testimonials = [
     quote:
       "I was skeptical about the results, but my teeth are 8 shades whiter! The process was comfortable and the team made me feel at ease throughout. My wedding photos turned out incredible.",
     rating: 5,
+    date: "Feb 12, 2024",
   },
   {
     name: "Mark Thompson",
@@ -19,6 +20,7 @@ const testimonials = [
     quote:
       "The whole process was painless and quick. I walked in during my lunch break and walked out with a completely transformed smile. Highly recommend to anyone considering whitening.",
     rating: 5,
+    date: "Jan 28, 2024",
   },
   {
     name: "Amanda Rodriguez",
@@ -26,7 +28,8 @@ const testimonials = [
     image: "/images/avatar-amanda.jpg",
     quote:
       "Best investment in my confidence. The custom shade calibration was brilliant - my teeth look naturally white, not fake at all. The aftercare kit has kept my results lasting months.",
-    rating: 5,
+    rating: 4,
+    date: "Mar 05, 2024",
   },
 ]
 

@@ -12,6 +12,7 @@ import { FAQSection } from "@/components/FAQSection"
 import { CTASection } from "@/components/CTASection"
 import { Footer } from "@/components/Footer"
 import { BookingModal } from "@/components/BookingModal"
+import { ExitIntentModal } from "@/components/ExitIntentModal"
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -32,6 +33,7 @@ export default function Home() {
       </main>
       <Footer />
       <BookingModal open={modalOpen} onOpenChange={setModalOpen} />
+      <ExitIntentModal onBookingClick={openBooking} />
     </div>
   )
 }

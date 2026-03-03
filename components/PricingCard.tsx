@@ -10,6 +10,7 @@ interface PricingCardProps {
   description: string
   features: string[]
   cta: string
+  paymentPlan?: string
   featured?: boolean
   delay?: number
   onSelect: () => void
@@ -21,6 +22,7 @@ export function PricingCard({
   description,
   features,
   cta,
+  paymentPlan,
   featured = false,
   delay = 0,
   onSelect,
@@ -31,8 +33,8 @@ export function PricingCard({
     <div
       ref={ref}
       className={`relative flex flex-col rounded-xl border p-6 transition-all duration-500 lg:p-8 ${featured
-          ? "border-gold bg-white shadow-xl lg:scale-105 z-10"
-          : "premium-card"
+        ? "border-gold bg-white shadow-xl lg:scale-105 z-10"
+        : "premium-card"
         } ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
@@ -50,9 +52,16 @@ export function PricingCard({
       </div>
 
       {/* Price */}
-      <div className="mb-6 border-b border-gold/10 pb-6">
-        <span className="text-5xl font-light text-foreground font-serif">{price}</span>
-        <span className="text-sm text-muted-foreground ml-1">/ session</span>
+      <div className="mb-4 border-b border-gold/10 pb-4">
+        <div className="flex items-baseline gap-1">
+          <span className="text-4xl lg:text-5xl font-light text-foreground font-serif">{price}</span>
+          <span className="text-sm text-muted-foreground">/ session</span>
+        </div>
+        {paymentPlan && (
+          <p className="mt-2 text-[11px] font-medium uppercase tracking-wider text-gold">
+            Or {paymentPlan}
+          </p>
+        )}
       </div>
 
       {/* Features */}

@@ -13,13 +13,13 @@ This plan outlines the priority implementation order for the dental landing page
   - Show users where they are in the multi-step booking process.
 
 ## 🔥 High Impact (Do Second)
-- [ ] **Vary testimonial ratings and add dates**
+- [x] **Vary testimonial ratings and add dates**
   - Make testimonials feel more authentic by adding varied ratings and timestamps.
-- [ ] **Add payment plan options to pricing**
+- [x] **Add payment plan options to pricing**
   - Showcase financing or installment options to reduce friction.
-- [ ] **Replace expert placeholder image**
+- [x] **Replace expert placeholder image**
   - Use high-quality, real imagery instead of placeholders.
-- [ ] **Add exit-intent offer**
+- [x] **Add exit-intent offer**
   - Implement a popup or overlay triggered when a user is about to leave.
 
 ## 🚀 Long Term (Optimize Over Time)
@@ -43,10 +43,10 @@ This plan outlines the priority implementation order for the dental landing page
 - [x] Progress indicator implemented
 
 ### Phase 2: High Impact
-- [ ] Testimonial metadata enhanced
-- [ ] Payment plans added
-- [ ] Expert images updated
-- [ ] Exit-intent logic implemented
+- [x] Testimonial metadata enhanced
+- [x] Payment plans added
+- [x] Expert images updated
+- [x] Exit-intent logic implemented
 
 ### Phase 3: Long Term
 - [ ] A/B testing framework set up

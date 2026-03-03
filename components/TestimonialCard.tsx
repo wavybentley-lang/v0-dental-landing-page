@@ -10,6 +10,7 @@ interface TestimonialCardProps {
   image: string
   quote: string
   rating: number
+  date: string
   delay?: number
 }
 
@@ -19,6 +20,7 @@ export function TestimonialCard({
   image,
   quote,
   rating,
+  date,
   delay = 0,
 }: TestimonialCardProps) {
   const { ref, isVisible } = useScrollReveal()
@@ -48,7 +50,7 @@ export function TestimonialCard({
 
       {/* Author */}
       <div className="flex items-center gap-3">
-        <div className="relative size-10 overflow-hidden rounded-full">
+        <div className="relative size-10 overflow-hidden rounded-full border border-gold/20">
           <Image
             src={image}
             alt={`${name} - Bright Smile patient`}
@@ -59,7 +61,11 @@ export function TestimonialCard({
         </div>
         <div>
           <p className="text-sm font-semibold text-foreground">{name}</p>
-          <p className="text-xs text-muted-foreground">{profession}</p>
+          <div className="flex items-center gap-2">
+            <p className="text-xs text-muted-foreground">{profession}</p>
+            <span className="text-[10px] text-muted-foreground/60">•</span>
+            <p className="text-[10px] text-muted-foreground/60">{date}</p>
+          </div>
         </div>
       </div>
     </div>

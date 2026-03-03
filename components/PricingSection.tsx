@@ -15,6 +15,7 @@ const tiers = [
       "1-week follow-up check",
     ],
     cta: "Select Essential",
+    paymentPlan: "4 interest-free payments of $62.25",
     featured: false,
   },
   {
@@ -31,6 +32,7 @@ const tiers = [
       "Priority scheduling",
     ],
     cta: "Claim Signature Slot",
+    paymentPlan: "6 monthly installments of $83.16",
     featured: true,
   },
   {
@@ -47,6 +49,7 @@ const tiers = [
       "Complimentary dental cleaning",
     ],
     cta: "Secure Elite Package",
+    paymentPlan: "12 monthly installments of $66.58",
     featured: false,
   },
 ]
