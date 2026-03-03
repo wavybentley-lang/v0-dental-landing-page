@@ -85,7 +85,7 @@ const UNAVAILABLE_DATES = [
 
 export function BookingModal({ open, onOpenChange }: BookingModalProps) {
   const [step, setStep] = useState<Step>("package")
-  const [selectedPackage, setSelectedPackage] = useState<string | null>(null)
+  const [selectedPackage, setSelectedPackage] = useState<string | null>("signature")
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
   const [selectedWindow, setSelectedWindow] = useState<string | null>(null)
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
@@ -225,13 +225,31 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
           <div className="flex flex-col">
             <div className="p-8 pb-4">
               <DialogHeader>
-                <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#C9A96E] mb-2">
-                  <span>
-                    {step === "waitlist"
-                      ? "Waitlist Registration"
-                      : `Step ${step === "package" ? "1" : step === "date" ? "2" : step === "time" ? "3" : "4"} of 4`}
-                  </span>
-                  <div className="h-px flex-1 bg-[#C9A96E]/20" />
+                <div className="flex flex-col gap-4 mb-2">
+                  <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#C9A96E]">
+                    <span>
+                      {step === "waitlist"
+                        ? "Waitlist Registration"
+                        : `Step ${step === "package" ? "1" : step === "date" ? "2" : step === "time" ? "3" : "4"} of 4`}
+                    </span>
+                    <div className="h-px flex-1 bg-[#C9A96E]/20" />
+                  </div>
+                  {step !== "waitlist" && (
+                    <div className="flex gap-2 h-1.5 w-full">
+                      {[1, 2, 3, 4].map((i) => {
+                        const currentStepNum = step === "package" ? 1 : step === "date" ? 2 : step === "time" ? 3 : 4;
+                        return (
+                          <div
+                            key={i}
+                            className={cn(
+                              "flex-1 rounded-full transition-all duration-500",
+                              i <= currentStepNum ? "bg-[#C9A96E]" : "bg-[#C9A96E]/10"
+                            )}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
                 <DialogTitle className="font-serif text-4xl text-[#1B2B4B] tracking-tight">
                   {step === "package" ? "Select Your Package" : step === "date" ? "Choose Date" : step === "time" ? "Choose Time" : step === "waitlist" ? "Join Waiting List" : "Appointment Details"}

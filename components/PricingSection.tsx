@@ -14,7 +14,7 @@ const tiers = [
       "Post-treatment care guide",
       "1-week follow-up check",
     ],
-    cta: "Choose Essential",
+    cta: "Select Essential",
     featured: false,
   },
   {
@@ -30,7 +30,7 @@ const tiers = [
       "Premium aftercare kit",
       "Priority scheduling",
     ],
-    cta: "Book Now",
+    cta: "Claim Signature Slot",
     featured: true,
   },
   {
@@ -46,7 +46,7 @@ const tiers = [
       "Annual touch-up included",
       "Complimentary dental cleaning",
     ],
-    cta: "Choose Elite",
+    cta: "Secure Elite Package",
     featured: false,
   },
 ]
@@ -81,6 +81,30 @@ export function PricingSection({ onBookingClick }: PricingSectionProps) {
               onSelect={onBookingClick}
             />
           ))}
+        </div>
+
+        {/* Money-back Guarantee */}
+        <div className="mt-16 flex flex-col items-center justify-center p-8 rounded-2xl border border-gold/10 bg-card shadow-xl max-w-2xl mx-auto">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="flex size-12 items-center justify-center rounded-full bg-gold/10">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="size-6 text-gold"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-serif font-bold text-foreground">Our Result-First Guarantee</h3>
+          </div>
+          <p className="text-center text-muted-foreground leading-relaxed font-sans">
+            Not seeing the results you expected? If your teeth aren't at least <span className="text-gold font-bold">2 shades whiter</span> after your session, we'll provide a full refund or a complimentary second treatment. No questions asked.
+          </p>
         </div>
       </div>
     </section>

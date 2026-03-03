@@ -32,7 +32,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
               size="lg"
               className="h-14 rounded-lg px-8 text-base shadow-lg bg-navy hover:bg-navy/90 text-white"
             >
-              Book Your Free Consultation
+              Claim Your Appointment Spot
             </Button>
             <Link
               href="/contact"
