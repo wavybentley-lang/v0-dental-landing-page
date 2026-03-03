@@ -31,7 +31,7 @@ export function CTASection({ onBookingClick, onLearnMoreClick }: CTASectionProps
             size="lg"
             className="h-14 rounded-lg px-8 text-base shadow-xl"
           >
-            Claim Your Appointment Spot
+            Claim Your Whitening Slot
           </Button>
           <a
             href="/contact"
