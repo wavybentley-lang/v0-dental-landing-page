@@ -13,6 +13,7 @@ import { CTASection } from "@/components/CTASection"
 import { Footer } from "@/components/Footer"
 import { BookingModal } from "@/components/BookingModal"
 import { ExitIntentModal } from "@/components/ExitIntentModal"
+import { LiquidSectionDivider } from "@/components/LiquidSectionDivider"
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -27,8 +28,17 @@ export default function Home() {
         <FeaturesSection onBookingClick={openBooking} />
         <BeforeAfterSection onBookingClick={openBooking} />
         <TestimonialSection onBookingClick={openBooking} />
+
+        {/* Morphing Transition: White to Navy */}
+        <LiquidSectionDivider from="var(--background)" to="var(--secondary)" />
         <PricingSection onBookingClick={openBooking} />
+
+        {/* Morphing Transition: Navy to White */}
+        <LiquidSectionDivider from="var(--secondary)" to="var(--background)" />
         <FAQSection />
+
+        {/* Morphing Transition: White to Navy */}
+        <LiquidSectionDivider from="var(--background)" to="var(--navy)" />
         <CTASection onBookingClick={openBooking} />
       </main>
       <Footer />

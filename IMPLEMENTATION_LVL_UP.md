@@ -54,7 +54,7 @@ While previously excluded to maintain stability, **Elite** level uses "Soft-Magn
 
 ### Liquidity Transitions
 - **Smooth-Scroll 2.0**: Implementation of Lenis or similar for high-precision inertial scrolling.
-- **Section Morphing**: Background colors that morph (Liquid SVG) as the user transitions between dark navy and warm white sections.
+- [x] **Section Morphing**: Background colors that morph (Liquid SVG) as the user transitions between dark navy and warm white sections.
 
 ---
 
