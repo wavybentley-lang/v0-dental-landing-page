@@ -1,8 +1,21 @@
 import type { Metadata, Viewport } from 'next'
+import { Inter, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SmoothScroll } from '@/components/SmoothScroll'
 import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
+})
 
 export const viewport: Viewport = {
   themeColor: '#1B2B4B',
@@ -23,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased noise-overlay">
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased noise-overlay`}>
         <SmoothScroll />
         {children}
         <SpeedInsights />

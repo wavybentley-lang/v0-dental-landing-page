@@ -4,60 +4,58 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Core Colors - Elegant Nautical Theme */
-  --background: #FAFAF7;
-  /* Warm white */
-  --foreground: #1B2B4B;
-  /* Navy */
+  /* Core Colors - Clean Luxury Theme */
+  --background: #FFFFFF;
+  --foreground: #0F172A;
   --card: #FFFFFF;
-  --card-foreground: #1B2B4B;
+  --card-foreground: #0F172A;
   --popover: #FFFFFF;
-  --popover-foreground: #1B2B4B;
+  --popover-foreground: #0F172A;
 
-  /* Primary (Gold - Luxury & Warmth) */
-  --primary: #C9A96E;
-  --primary-foreground: #1B2B4B;
+  /* Primary (Gold Accent) */
+  --primary: #D4AF37;
+  --primary-foreground: #FFFFFF;
 
-  /* Secondary (Navy - Trust & Professionalism) */
-  --secondary: #1B2B4B;
-  --secondary-foreground: #FAFAF7;
+  /* Secondary (Navy Accent) */
+  --secondary: #0F172A;
+  --secondary-foreground: #FFFFFF;
 
   /* Muted (Neutral Grays) */
-  --muted: #F1F1F1;
-  --muted-foreground: #6B7280;
+  --muted: #F8F9FA;
+  --muted-foreground: #64748B;
 
-  /* Accent (Gold - Premium Highlight) */
-  --accent: #C9A96E;
-  --accent-foreground: #1B2B4B;
+  /* Accent (Gold Accent) */
+  --accent: #D4AF37;
+  --accent-foreground: #FFFFFF;
 
   /* Destructive */
-  --destructive: #DC2626;
+  --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
 
   /* UI Elements */
-  --border: #E5E7EB;
-  --input: #F3F4F6;
-  --ring: #C9A96E;
+  --border: #E2E8F0;
+  --input: #F1F5F9;
+  --ring: #D4AF37;
 
   /* Chart Colors */
-  --chart-1: #C9A96E;
-  --chart-2: #1B2B4B;
-  --chart-3: #2D2D2D;
-  --chart-4: #F0EBE0;
-  --chart-5: #FAFAF7;
+  --chart-1: #D4AF37;
+  --chart-2: #0F172A;
+  --chart-3: #2F3E46;
+  --chart-4: #CAD2C5;
+  --chart-5: #F8F9FA;
 
   /* Spacing & Radius */
   --radius: 0.75rem;
 
   /* Sidebar */
   --sidebar: #FFFFFF;
-  --sidebar-foreground: #1B2B4B;
-  --sidebar-primary: #C9A96E;
-  --sidebar-primary-foreground: #1B2B4B;
+  --sidebar-foreground: #0F172A;
+  --sidebar-primary: #D4AF37;
+  --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #F1F5F9;
-  --sidebar-accent-foreground: #1B2B4B;
-  --sidebar-border: #E5E7EB;
-  --sidebar-ring: #C9A96E;
+  --sidebar-accent-foreground: #0F172A;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #D4AF37;
 
   /* Glass Effect Support */
   --glass-bg: rgba(255, 255, 255, 0.7);
@@ -65,72 +63,73 @@
   --glass-blur: 12px;
 
   /* World Class Brand Colors */
-  --gold: #C9A96E;
-  --navy: #1B2B4B;
+  --gold: #D4AF37;
+  --navy: #0F172A;
 }
 
 .dark {
   /* Dark Mode - Luxury Deep Navy Theme */
-  --background: #1B2B4B;
-  --foreground: #FAFAF7;
-  --card: #203152;
-  --card-foreground: #FAFAF7;
-  --popover: #203152;
-  --popover-foreground: #FAFAF7;
+  --background: #0F172A;
+  --foreground: #F8F9FA;
+  --card: #1E293B;
+  --card-foreground: #F8F9FA;
+  --popover: #1E293B;
+  --popover-foreground: #F8F9FA;
 
   /* Primary (Gold) */
-  --primary: #C9A96E;
-  --primary-foreground: #1B2B4B;
+  --primary: #D4AF37;
+  --primary-foreground: #0F172A;
 
-  /* Secondary (White) */
-  --secondary: #FAFAF7;
-  --secondary-foreground: #1B2B4B;
+  /* Secondary (White/Light) */
+  --secondary: #F8F9FA;
+  --secondary-foreground: #0F172A;
 
   /* Muted */
-  --muted: #2d3e5d;
-  --muted-foreground: #94a3b8;
+  --muted: #334155;
+  --muted-foreground: #94A3B8;
 
   /* Accent */
-  --accent: #C9A96E;
-  --accent-foreground: #1B2B4B;
+  --accent: #D4AF37;
+  --accent-foreground: #0F172A;
 
   /* Destructive */
-  --destructive: #7f1d1d;
-  --destructive-foreground: #FAFAF7;
+  --destructive: #991B1B;
+  --destructive-foreground: #F8F9FA;
 
   /* UI Elements */
-  --border: #2d3e5d;
-  --input: #2d3e5d;
-  --ring: #C9A96E;
+  --border: #334155;
+  --input: #334155;
+  --ring: #D4AF37;
 
   /* Chart Colors */
-  --chart-1: #C9A96E;
-  --chart-2: #FAFAF7;
+  --chart-1: #D4AF37;
+  --chart-2: #F8F9FA;
   --chart-3: #A78BFA;
   --chart-4: #F472B6;
   --chart-5: #FBBF24;
 
   /* Sidebar */
-  --sidebar: #203152;
-  --sidebar-foreground: #FAFAF7;
-  --sidebar-primary: #C9A96E;
-  --sidebar-primary-foreground: #1B2B4B;
-  --sidebar-accent: #2d3e5d;
-  --sidebar-accent-foreground: #FAFAF7;
-  --sidebar-border: #2d3e5d;
-  --sidebar-ring: #C9A96E;
+  --sidebar: #1E293B;
+  --sidebar-foreground: #F8F9FA;
+  --sidebar-primary: #D4AF37;
+  --sidebar-primary-foreground: #0F172A;
+  --sidebar-accent: #334155;
+  --sidebar-accent-foreground: #F8F9FA;
+  --sidebar-border: #334155;
+  --sidebar-ring: #D4AF37;
 
   /* Glass Effect Dark Mode */
-  --glass-bg: rgba(27, 43, 75, 0.6);
+  --glass-bg: rgba(15, 23, 42, 0.6);
   --glass-border: rgba(255, 255, 255, 0.1);
 
   /* World Class Brand Colors */
-  --gold: #C9A96E;
-  --navy: #1B2B4B;
+  --gold: #D4AF37;
+  --navy: #0F172A;
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -185,7 +184,16 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif tracking-tight text-navy;
   }
 
   html {
@@ -250,9 +258,9 @@
     box-shadow: 0 8px 30px rgba(201, 169, 110, 0.15);
   }
 
-  /* Hero Gradient Background */
+  /* Hero Gradient Background - Clean Luxury */
   .hero-gradient {
-    background: linear-gradient(180deg, #FAFAF7 0%, #F0EBE0 100%);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FDFCFB 100%);
   }
 
   .dark .hero-gradient {
