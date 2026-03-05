@@ -34,40 +34,42 @@ export function FeaturesSection({ onBookingClick }: FeaturesSectionProps) {
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal()
 
   return (
-    <section id="features" className="w-full bg-background py-16 md:py-20 lg:py-24">
+    <section id="features" className="w-full bg-slate-50/50 py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
-        <div
-          ref={headerRef}
-          className={`mx-auto mb-12 max-w-2xl text-center lg:mb-16 transition-all duration-1000 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-        >
-          <span className="section-label">
-            Why Choose Us
-          </span>
-          <h2 className="text-balance text-3xl font-bold text-navy md:text-4xl">
-            Advanced Whitening Technology
-          </h2>
-          <p className="mt-4 text-pretty text-muted-foreground lg:text-lg">
-            Our clinic combines cutting-edge dental science with personalized
-            care to deliver safe, long-lasting results.
-          </p>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature, i) => (
-            <FeatureCard key={feature.title} {...feature} delay={i * 150} />
-          ))}
-        </div>
-
-        <div className="mt-12 flex justify-center lg:mt-16">
-          <Button
-            onClick={onBookingClick}
-            variant="outline"
-            size="lg"
-            className="rounded-lg"
+        <div className="bg-white/40 backdrop-blur-lg border border-white/20 shadow-2xl shadow-navy/5 rounded-3xl p-8 md:p-12 lg:p-16 transition-all duration-300">
+          <div
+            ref={headerRef}
+            className={`mx-auto mb-12 max-w-2xl text-center lg:mb-16 transition-all duration-1000 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
           >
-            {"Ready? Book Now"}
-          </Button>
+            <span className="section-label">
+              Why Choose Us
+            </span>
+            <h2 className="text-balance text-3xl font-bold text-navy md:text-4xl">
+              Advanced Whitening Technology
+            </h2>
+            <p className="mt-4 text-pretty text-muted-foreground lg:text-lg">
+              Our clinic combines cutting-edge dental science with personalized
+              care to deliver safe, long-lasting results.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, i) => (
+              <FeatureCard key={feature.title} {...feature} delay={i * 150} />
+            ))}
+          </div>
+
+          <div className="mt-12 flex justify-center lg:mt-16">
+            <Button
+              onClick={onBookingClick}
+              variant="outline"
+              size="lg"
+              className="rounded-lg"
+            >
+              {"Ready? Book Now"}
+            </Button>
+          </div>
         </div>
       </div>
     </section>

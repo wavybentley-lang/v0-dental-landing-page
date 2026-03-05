@@ -24,7 +24,7 @@ export const ExpertsSection = () => {
     ]
 
     return (
-        <section className="py-24 bg-background overflow-hidden">
+        <section className="py-24 bg-slate-50/50 overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-both">
                     <h2
@@ -36,7 +36,7 @@ export const ExpertsSection = () => {
 
                 <div className="max-w-4xl mx-auto">
                     <div
-                        className="premium-card p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both"
+                        className="bg-white/40 backdrop-blur-lg border border-white/20 shadow-2xl shadow-navy/5 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both"
                     >
                         {/* Provider Profile Image */}
                         <div className="w-64 h-80 bg-navy/5 rounded-lg overflow-hidden flex-shrink-0 relative group border border-gold/10 shadow-xl">

@@ -16,7 +16,7 @@ export function FeatureCard({ icon, title, description, delay = 0 }: FeatureCard
   return (
     <div
       ref={ref}
-      className={`group premium-card p-6 lg:p-8 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+      className={`group bg-white/40 backdrop-blur-lg border border-white/20 shadow-2xl shadow-slate-900/5 rounded-xl p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
