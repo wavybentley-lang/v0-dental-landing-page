@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, Sparkles, Phone, Clock } from "lucide-react"
+import { Menu, X, Sparkles, Phone, Clock, Calendar, CheckCircle, MessageSquare, Tag, HelpCircle, Mail, ChevronRight, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "Results", href: "#results" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Features", href: "#features", icon: Sparkles },
+  { label: "Results", href: "#results", icon: CheckCircle },
+  { label: "Testimonials", href: "#testimonials", icon: MessageSquare },
+  { label: "Pricing", href: "#pricing", icon: Tag },
+  { label: "FAQ", href: "#faq", icon: HelpCircle },
 ]
 
 interface HeaderProps {
@@ -44,8 +44,8 @@ export function Header({ onBookingClick }: HeaderProps) {
         }`}
     >
       {/* Top Bar */}
-      <div className="w-full bg-navy py-2">
-        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
+      <div className="w-full bg-navy py-1.5 sm:py-2">
+        <div className="mx-auto flex h-11 sm:h-10 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
           <div className="flex items-center gap-4 sm:gap-6">
             <a
               href="tel:+15550001234"
@@ -107,58 +107,106 @@ export function Header({ onBookingClick }: HeaderProps) {
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="inline-flex items-center justify-center rounded-md p-2 text-navy md:hidden"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-        </button>
+        {/* Mobile Menu & CTA */}
+        <div className="flex items-center gap-3 md:hidden">
+          <Button
+            onClick={onBookingClick}
+            size="sm"
+            className="h-10 px-4 text-xs font-bold bg-gold hover:bg-gold/90 text-navy rounded-full shadow-md animate-pulse-slow"
+          >
+            BOOK NOW
+          </Button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="inline-flex items-center justify-center rounded-full w-11 h-11 text-navy bg-slate-100/50 hover:bg-slate-100 transition-colors"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav Overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-16 z-40 md:hidden">
-          <div
-            className="absolute inset-0 bg-navy/60 backdrop-blur-md"
-            onClick={() => setMobileOpen(false)}
-            aria-hidden="true"
-          />
-          <nav
-            className="relative mx-4 mt-2 flex flex-col gap-1 rounded-2xl border border-gold/10 bg-white p-6 shadow-2xl animate-in slide-in-from-top-4 duration-300"
-            aria-label="Mobile navigation"
-          >
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+        <div className="fixed inset-0 top-0 z-50 md:hidden bg-white">
+          <div className="flex flex-col h-full">
+            {/* Mobile Menu Header */}
+            <div className="flex h-16 items-center justify-between px-4 border-b border-slate-100">
+              <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
+                <Sparkles className="size-6 text-gold" />
+                <span className="text-xl font-bold text-navy tracking-tight">BrightSmile</span>
+              </Link>
+              <button
                 onClick={() => setMobileOpen(false)}
-                className="rounded-lg px-4 py-3 text-lg font-bold text-navy transition-colors hover:bg-slate-50 hover:text-gold"
+                className="inline-flex items-center justify-center rounded-full w-11 h-11 text-navy bg-slate-100"
               >
-                {link.label}
-              </a>
-            ))}
-            <div className="my-2 h-px bg-slate-100" />
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="rounded-lg px-4 py-3 text-lg font-bold text-navy transition-colors hover:bg-slate-50 hover:text-gold"
-            >
-              Contact
-            </Link>
-            <Button
-              onClick={() => {
-                setMobileOpen(false)
-                onBookingClick()
-              }}
-              size="lg"
-              className="mt-4 w-full h-14 rounded-xl bg-navy hover:bg-navy/90 text-white text-lg font-bold shadow-lg"
-            >
-              Book Appointment
-            </Button>
-          </nav>
+                <X className="size-6" />
+              </button>
+            </div>
+
+            {/* Mobile Menu Links */}
+            <div className="flex-1 overflow-y-auto py-8 px-6 space-y-2">
+              <p className="text-[10px] font-bold tracking-[0.2em] text-navy/40 uppercase mb-4 px-2">Navigation</p>
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="group flex items-center justify-between rounded-2xl px-4 py-4 text-lg font-bold text-navy transition-all hover:bg-navy hover:text-white"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-slate-100 group-hover:bg-white/10 transition-colors">
+                      <link.icon className="size-5 text-gold" />
+                    </div>
+                    {link.label}
+                  </div>
+                  <ChevronRight className="size-5 text-navy/20 group-hover:text-white/40" />
+                </a>
+              ))}
+
+              <div className="pt-8 space-y-2">
+                <p className="text-[10px] font-bold tracking-[0.2em] text-navy/40 uppercase mb-4 px-2">Support</p>
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="group flex items-center justify-between rounded-2xl px-4 py-4 text-lg font-bold text-navy transition-all hover:bg-navy hover:text-white"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-slate-100 group-hover:bg-white/10 transition-colors">
+                      <Mail className="size-5 text-gold" />
+                    </div>
+                    Contact
+                  </div>
+                  <ChevronRight className="size-5 text-navy/20 group-hover:text-white/40" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Mobile Menu Footer */}
+            <div className="p-6 border-t border-slate-100 bg-slate-50/50">
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <a href="tel:+15550001234" className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white border border-slate-200 gap-2 shadow-sm">
+                  <Phone className="size-5 text-gold" />
+                  <span className="text-xs font-bold text-navy">Call Us</span>
+                </a>
+                <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white border border-slate-200 gap-2 shadow-sm">
+                  <Clock className="size-5 text-gold" />
+                  <span className="text-xs font-bold text-navy">8am - 6pm</span>
+                </div>
+              </div>
+              <Button
+                onClick={() => {
+                  setMobileOpen(false)
+                  onBookingClick()
+                }}
+                className="w-full h-14 rounded-2xl bg-navy hover:bg-navy/90 text-white text-lg font-bold shadow-xl flex items-center justify-center gap-2"
+              >
+                Book Appointment
+                <ArrowRight className="size-5" />
+              </Button>
+            </div>
+          </div>
         </div>
       )}
     </header>
