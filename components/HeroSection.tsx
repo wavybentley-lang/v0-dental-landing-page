@@ -46,7 +46,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
               <span>Limited Time: New Patient Special</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 fill-mode-both">
+            <h1 className="text-[32px] md:text-5xl lg:text-6xl xl:text-7xl leading-[1.2] md:leading-[1.1] mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 fill-mode-both">
               The Smile You’ve Always Wanted. <span className="text-gold italic relative inline-block">Delivered<span className="absolute bottom-1 left-0 w-full h-1 bg-gold/10 -rotate-1" /></span> in 60 Minutes.
             </h1>
 
