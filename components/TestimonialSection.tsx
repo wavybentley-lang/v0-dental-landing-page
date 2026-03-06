@@ -59,7 +59,7 @@ export function TestimonialSection({ onBookingClick }: TestimonialSectionProps) 
           <span className="section-label">
             Patient Stories
           </span>
-          <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="text-balance text-3xl font-medium text-foreground md:text-4xl">
             Success Stories in Motion
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground font-sans">
@@ -75,7 +75,7 @@ export function TestimonialSection({ onBookingClick }: TestimonialSectionProps) 
         </div>
 
         <div className="mx-auto mb-12 max-w-2xl text-center">
-          <h3 className="text-2xl font-bold text-foreground">What Our Customers Say</h3>
+          <h3 className="text-2xl font-medium text-foreground">What Our Customers Say</h3>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -85,7 +85,7 @@ export function TestimonialSection({ onBookingClick }: TestimonialSectionProps) 
         </div>
 
         <div className="mt-12 flex justify-center lg:mt-16">
-          <Button onClick={onBookingClick} size="lg" className="rounded-lg">
+          <Button onClick={onBookingClick} size="lg" className="rounded-lg font-bold uppercase">
             Join Hundreds of Smiling Customers
           </Button>
         </div>

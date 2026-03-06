@@ -103,7 +103,7 @@ export function Header({ onBookingClick }: HeaderProps) {
             >
               Contact
             </Link>
-            <Button onClick={onBookingClick} size="lg" className="rounded-lg shadow-lg bg-navy hover:bg-navy/90 text-white font-bold transition-all hover:scale-[1.02]">
+            <Button onClick={onBookingClick} size="lg" className="rounded-lg shadow-lg bg-navy hover:bg-navy/90 text-white font-bold uppercase transition-all hover:scale-[1.02]">
               Book Appointment
             </Button>
           </div>
@@ -113,7 +113,7 @@ export function Header({ onBookingClick }: HeaderProps) {
             <Button
               onClick={onBookingClick}
               size="sm"
-              className="h-10 px-4 text-xs font-bold bg-gold hover:bg-gold/90 text-navy rounded-full shadow-md animate-pulse-slow"
+              className="h-10 px-4 text-xs font-bold bg-gold hover:bg-gold/90 text-navy rounded-full shadow-md animate-pulse-slow uppercase"
             >
               BOOK NOW
             </Button>
@@ -149,7 +149,7 @@ export function Header({ onBookingClick }: HeaderProps) {
 
             {/* Mobile Menu Links */}
             <div className="flex-1 overflow-y-auto py-8 px-6 space-y-2">
-              <p className="text-[10px] font-bold tracking-[0.2em] text-navy/40 uppercase mb-4 px-2">Navigation</p>
+              <p className="text-[10px] font-semibold tracking-[0.2em] text-navy/40 uppercase mb-4 px-2">Navigation</p>
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -168,7 +168,7 @@ export function Header({ onBookingClick }: HeaderProps) {
               ))}
 
               <div className="pt-8 space-y-2">
-                <p className="text-[10px] font-bold tracking-[0.2em] text-navy/40 uppercase mb-4 px-2">Support</p>
+                <p className="text-[10px] font-semibold tracking-[0.2em] text-navy/40 uppercase mb-4 px-2">Support</p>
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
@@ -202,7 +202,7 @@ export function Header({ onBookingClick }: HeaderProps) {
                   setMobileOpen(false)
                   onBookingClick()
                 }}
-                className="w-full h-14 rounded-2xl bg-navy hover:bg-navy/90 text-white text-lg font-bold shadow-xl flex items-center justify-center gap-2"
+                className="w-full h-14 rounded-2xl bg-navy hover:bg-navy/90 text-white text-lg font-bold uppercase shadow-xl flex items-center justify-center gap-2"
               >
                 Book Appointment
                 <ArrowRight className="size-5" />

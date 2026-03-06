@@ -47,7 +47,7 @@ export function PricingCard({
 
       {/* Header */}
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-foreground">{name}</h3>
+        <h3 className="text-xl font-medium text-foreground">{name}</h3>
         <p className="mt-1 text-sm text-muted-foreground italic font-sans">{description}</p>
       </div>
 
@@ -58,7 +58,7 @@ export function PricingCard({
           <span className="text-sm text-muted-foreground">/ session</span>
         </div>
         {paymentPlan && (
-          <p className="mt-2 text-[11px] font-medium uppercase tracking-wider text-gold">
+          <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
             Or {paymentPlan}
           </p>
         )}
@@ -81,7 +81,7 @@ export function PricingCard({
         onClick={onSelect}
         size="lg"
         variant={featured ? "default" : "outline"}
-        className="w-full rounded-lg"
+        className="w-full rounded-lg font-bold uppercase"
       >
         {cta}
       </Button>

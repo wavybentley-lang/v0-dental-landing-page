@@ -54,7 +54,7 @@ export function BeforeAfterSection({ onBookingClick }: BeforeAfterSectionProps) 
           <span className="section-label">
             Real Results
           </span>
-          <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="text-balance text-3xl font-medium text-foreground md:text-4xl text-foreground">
             See the Transformation
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground font-sans">
@@ -78,10 +78,10 @@ export function BeforeAfterSection({ onBookingClick }: BeforeAfterSectionProps) 
                 />
                 <div className="mt-6 flex flex-col gap-3">
                   <div className="flex gap-2">
-                    <span className="rounded-full bg-gold/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gold border border-gold/20">
+                    <span className="rounded-full bg-gold/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-gold border border-gold/20">
                       {patient.treatment}
                     </span>
-                    <span className="rounded-full bg-navy/5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-navy/60 border border-navy/10">
+                    <span className="rounded-full bg-navy/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-navy/60 border border-navy/10">
                       {patient.duration}
                     </span>
                   </div>
@@ -94,7 +94,7 @@ export function BeforeAfterSection({ onBookingClick }: BeforeAfterSectionProps) 
           </div>
 
           <div className="mt-16 text-center">
-            <Button size="lg" onClick={onBookingClick} className="bg-navy hover:bg-navy/90 text-white">
+            <Button size="lg" onClick={onBookingClick} className="bg-navy hover:bg-navy/90 text-white font-bold uppercase">
               Schedule Your Transformation
             </Button>
           </div>

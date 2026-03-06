@@ -45,7 +45,7 @@ export function FeaturesSection({ onBookingClick }: FeaturesSectionProps) {
             <span className="section-label">
               Why Choose Us
             </span>
-            <h2 className="text-balance text-3xl font-bold text-navy md:text-4xl">
+            <h2 className="text-balance text-3xl font-medium text-navy md:text-4xl text-navy">
               Advanced Whitening Technology
             </h2>
             <p className="mt-4 text-pretty text-muted-foreground lg:text-lg">
@@ -65,7 +65,7 @@ export function FeaturesSection({ onBookingClick }: FeaturesSectionProps) {
               onClick={onBookingClick}
               variant="outline"
               size="lg"
-              className="rounded-lg"
+              className="rounded-lg font-bold uppercase"
             >
               {"Ready? Book Now"}
             </Button>

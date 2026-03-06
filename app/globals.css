@@ -128,8 +128,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-outfit);
+  --font-serif: var(--font-instrument);
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -184,7 +184,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans leading-relaxed;
   }
 
   h1,
@@ -193,7 +193,7 @@
   h4,
   h5,
   h6 {
-    @apply font-serif tracking-tight text-navy;
+    @apply font-serif font-medium tracking-[-0.03em] text-navy;
   }
 
   html {
@@ -218,7 +218,7 @@
 
   /* CTA Button Base */
   .cta-button {
-    @apply bg-primary text-primary-foreground font-semibold py-3 px-8 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+    @apply bg-primary text-primary-foreground font-bold uppercase py-3 px-8 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
   }
 
   .cta-button:hover {
@@ -244,7 +244,7 @@
 
   /* Premium Section Label */
   .section-label {
-    @apply text-gold text-xs uppercase tracking-[0.2em] font-medium mb-4 block;
+    @apply text-gold text-xs uppercase tracking-[0.2em] font-semibold mb-4 block;
   }
 
   /* Premium Card Styles */

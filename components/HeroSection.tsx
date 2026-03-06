@@ -41,7 +41,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
 
           {/* Text Content - 60% Width on Desktop */}
           <div className="w-full lg:w-[60%] flex flex-col items-center text-center lg:items-start lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-bold tracking-widest uppercase mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100 fill-mode-both">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100 fill-mode-both">
               <Sparkles className="size-3" />
               <span>Limited Time: New Patient Special</span>
             </div>
@@ -59,7 +59,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
                 <Button
                   onClick={onBookingClick}
                   size="lg"
-                  className="h-16 rounded-full px-10 text-lg shadow-xl bg-navy hover:bg-navy/90 text-white transition-all hover:scale-105 active:scale-95 group"
+                  className="h-16 rounded-full px-10 text-lg shadow-xl bg-navy hover:bg-navy/90 text-white transition-all hover:scale-105 active:scale-95 group font-bold uppercase"
                 >
                   Claim Your New Patient Special
                   <Sparkles className="ml-2 size-5 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -82,7 +82,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
                   </div>
                 ))}
                 <div className="ml-4 pl-4 border-l border-slate-200 py-1">
-                  <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Join 200+ Happy Patients</p>
+                  <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-[0.2em]">Join 200+ Happy Patients</p>
                 </div>
               </div>
             </div>
@@ -92,15 +92,15 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
               <div className="flex flex-wrap justify-center lg:justify-start gap-y-6 gap-x-10 border-t border-slate-100 pt-8 opacity-70">
                 <div className="flex items-center gap-2 group transition-opacity hover:opacity-100">
                   <ShieldCheck className="size-5 text-gold" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-navy">FDA Approved</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-navy">FDA Approved</span>
                 </div>
                 <div className="flex items-center gap-2 group transition-opacity hover:opacity-100">
                   <CheckCircle2 className="size-5 text-gold" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-navy">BPA-Free Materials</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-navy">BPA-Free Materials</span>
                 </div>
                 <div className="flex items-center gap-2 group transition-opacity hover:opacity-100">
                   <ShieldCheck className="size-5 text-gold" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-navy">Supervised Clinical Care</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-navy">Supervised Clinical Care</span>
                 </div>
               </div>
             </div>

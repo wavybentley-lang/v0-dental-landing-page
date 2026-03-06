@@ -66,7 +66,7 @@ export function PricingSection({ onBookingClick }: PricingSectionProps) {
           <span className="section-label">
             Pricing
           </span>
-          <h2 className="text-balance text-3xl font-bold text-secondary-foreground md:text-4xl">
+          <h2 className="text-balance text-3xl font-medium text-secondary-foreground md:text-4xl text-secondary-foreground">
             Transparent Pricing
           </h2>
           <p className="mt-4 text-pretty text-secondary-foreground/80 font-sans">
@@ -103,7 +103,7 @@ export function PricingSection({ onBookingClick }: PricingSectionProps) {
                 <path d="m9 12 2 2 4-4" />
               </svg>
             </div>
-            <h3 className="text-xl font-serif font-bold text-foreground">Our Result-First Guarantee</h3>
+            <h3 className="text-xl font-serif font-medium text-foreground">Our Result-First Guarantee</h3>
           </div>
           <p className="text-center text-muted-foreground leading-relaxed font-sans">
             Not seeing the results you expected? If your teeth aren't at least <span className="text-gold font-bold">2 shades whiter</span> after your session, we'll provide a full refund or a complimentary second treatment. No questions asked.

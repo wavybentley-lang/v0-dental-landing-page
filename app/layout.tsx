@@ -1,20 +1,21 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Outfit, Instrument_Serif } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SmoothScroll } from '@/components/SmoothScroll'
 import './globals.css'
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-outfit',
 })
 
-const playfair = Playfair_Display({
+const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
+  weight: '400',
   display: 'swap',
-  variable: '--font-playfair',
+  variable: '--font-instrument',
 })
 
 export const viewport: Viewport = {
@@ -36,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased noise-overlay`}>
+      <body className={`${outfit.variable} ${instrumentSerif.variable} font-sans antialiased noise-overlay`}>
         <SmoothScroll />
         {children}
         <SpeedInsights />

@@ -52,7 +52,7 @@ export const ExpertsSection = () => {
 
                         <div className="flex-1">
                             <div className="mb-6 text-center md:text-left">
-                                <h3 className="text-3xl font-bold font-serif text-navy mb-1 uppercase tracking-tight">{expert.name}</h3>
+                                <h3 className="text-3xl font-medium font-serif text-navy mb-1 tracking-tight">{expert.name}</h3>
                                 <p className="text-gold font-semibold tracking-[0.25em] uppercase text-sm">{expert.role}</p>
                             </div>
 
@@ -84,7 +84,7 @@ export const ExpertsSection = () => {
                                 <div className="w-16 h-16 rounded-full bg-navy/5 flex items-center justify-center mb-4 group-hover:bg-gold/10 transition-colors duration-700 ease-out">
                                     <badge.icon className="w-8 h-8 text-gold group-hover:scale-110 transition-all duration-700 ease-out" />
                                 </div>
-                                <span className="text-navy font-bold text-sm uppercase tracking-[0.25em] font-sans">
+                                <span className="text-navy font-semibold text-sm uppercase tracking-[0.2em] font-sans">
                                     {badge.text}
                                 </span>
                             </div>
