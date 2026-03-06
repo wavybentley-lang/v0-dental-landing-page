@@ -37,105 +37,107 @@ export function Header({ onBookingClick }: HeaderProps) {
   }, [mobileOpen])
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-700 ease-in-out ${scrolled
-        ? "bg-white/95 backdrop-blur-md border-b border-gold/10 shadow-xl"
-        : "bg-white border-b border-slate-100"
-        }`}
-    >
-      {/* Top Bar */}
-      <div className="w-full bg-navy py-1.5 sm:py-2">
-        <div className="mx-auto flex h-11 sm:h-10 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
-          <div className="flex items-center gap-4 sm:gap-6">
-            <a
-              href="tel:+15550001234"
-              className="group flex items-center gap-2 text-xs font-bold text-white transition-colors hover:text-gold"
-            >
-              <div className="flex size-6 items-center justify-center rounded-full bg-gold/10 group-hover:bg-gold/20 transition-colors">
-                <Phone className="size-3 text-gold" />
+    <>
+      <header
+        className={`sticky top-0 z-50 w-full transition-all duration-700 ease-in-out ${scrolled
+          ? "bg-white/95 backdrop-blur-md border-b border-gold/10 shadow-xl"
+          : "bg-white border-b border-slate-100"
+          }`}
+      >
+        {/* Top Bar */}
+        <div className="w-full bg-navy py-1.5 sm:py-2">
+          <div className="mx-auto flex h-11 sm:h-10 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
+            <div className="flex items-center gap-4 sm:gap-6">
+              <a
+                href="tel:+15550001234"
+                className="group flex items-center gap-2 text-xs font-bold text-white transition-colors hover:text-gold"
+              >
+                <div className="flex size-6 items-center justify-center rounded-full bg-gold/10 group-hover:bg-gold/20 transition-colors">
+                  <Phone className="size-3 text-gold" />
+                </div>
+                <span className="hidden sm:inline">(555) 000-1234</span>
+                <span className="sm:hidden text-gold tracking-tight">CALL NOW</span>
+              </a>
+              <div className="flex items-center gap-2 text-[11px] font-semibold text-white/80 sm:text-xs">
+                <Clock className="size-3.5 text-gold/80" />
+                <span className="hidden xs:inline">Mon-Fri: 8am - 6pm</span>
+                <span className="xs:hidden">M-F: 8a-6p</span>
               </div>
-              <span className="hidden sm:inline">(555) 000-1234</span>
-              <span className="sm:hidden text-gold tracking-tight">CALL NOW</span>
-            </a>
-            <div className="flex items-center gap-2 text-[11px] font-semibold text-white/80 sm:text-xs">
-              <Clock className="size-3.5 text-gold/80" />
-              <span className="hidden xs:inline">Mon-Fri: 8am - 6pm</span>
-              <span className="xs:hidden">M-F: 8a-6p</span>
+            </div>
+            <div className="hidden items-center gap-4 text-xs font-bold text-white/70 md:flex">
+              <span>Sat: 9am - 4pm</span>
+              <div className="h-3 w-px bg-white/20" />
+              <span className="text-gold italic">Premium Dental Care</span>
             </div>
           </div>
-          <div className="hidden items-center gap-4 text-xs font-bold text-white/70 md:flex">
-            <span>Sat: 9am - 4pm</span>
-            <div className="h-3 w-px bg-white/20" />
-            <span className="text-gold italic">Premium Dental Care</span>
+        </div>
+
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <Sparkles className="size-6 text-gold group-hover:rotate-12 transition-transform duration-300" />
+            <span className="text-xl font-bold text-navy tracking-tight">
+              Bright<span className="text-gold underline decoration-gold/30 underline-offset-4">Smile</span>
+            </span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden items-center gap-2 md:flex" aria-label="Main navigation">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="relative px-3 py-2 text-sm font-bold text-navy/80 transition-all duration-700 ease-out hover:text-gold group"
+              >
+                {link.label}
+                <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-gold scale-x-0 transition-transform duration-700 ease-out group-hover:scale-x-100" />
+              </a>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden items-center gap-6 md:flex">
+            <Link
+              href="/contact"
+              className="text-sm font-bold text-navy/80 transition-colors hover:text-gold"
+            >
+              Contact
+            </Link>
+            <Button onClick={onBookingClick} size="lg" className="rounded-lg shadow-lg bg-navy hover:bg-navy/90 text-white font-bold transition-all hover:scale-[1.02]">
+              Book Appointment
+            </Button>
+          </div>
+
+          {/* Mobile Menu & CTA */}
+          <div className="flex items-center gap-3 md:hidden">
+            <Button
+              onClick={onBookingClick}
+              size="sm"
+              className="h-10 px-4 text-xs font-bold bg-gold hover:bg-gold/90 text-navy rounded-full shadow-md animate-pulse-slow"
+            >
+              BOOK NOW
+            </Button>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="inline-flex items-center justify-center rounded-full w-11 h-11 text-navy bg-slate-100/50 hover:bg-slate-100 transition-colors"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+            </button>
           </div>
         </div>
-      </div>
 
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <Sparkles className="size-6 text-gold group-hover:rotate-12 transition-transform duration-300" />
-          <span className="text-xl font-bold text-navy tracking-tight">
-            Bright<span className="text-gold underline decoration-gold/30 underline-offset-4">Smile</span>
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden items-center gap-2 md:flex" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="relative px-3 py-2 text-sm font-bold text-navy/80 transition-all duration-700 ease-out hover:text-gold group"
-            >
-              {link.label}
-              <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-gold scale-x-0 transition-transform duration-700 ease-out group-hover:scale-x-100" />
-            </a>
-          ))}
-        </nav>
-
-        {/* Desktop CTA */}
-        <div className="hidden items-center gap-6 md:flex">
-          <Link
-            href="/contact"
-            className="text-sm font-bold text-navy/80 transition-colors hover:text-gold"
-          >
-            Contact
-          </Link>
-          <Button onClick={onBookingClick} size="lg" className="rounded-lg shadow-lg bg-navy hover:bg-navy/90 text-white font-bold transition-all hover:scale-[1.02]">
-            Book Appointment
-          </Button>
-        </div>
-
-        {/* Mobile Menu & CTA */}
-        <div className="flex items-center gap-3 md:hidden">
-          <Button
-            onClick={onBookingClick}
-            size="sm"
-            className="h-10 px-4 text-xs font-bold bg-gold hover:bg-gold/90 text-navy rounded-full shadow-md animate-pulse-slow"
-          >
-            BOOK NOW
-          </Button>
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="inline-flex items-center justify-center rounded-full w-11 h-11 text-navy bg-slate-100/50 hover:bg-slate-100 transition-colors"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-          </button>
-        </div>
-      </div>
-
+      </header>
       {/* Mobile Nav Overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-0 z-50 md:hidden bg-white">
+        <div className="fixed inset-0 top-0 z-[100] md:hidden bg-white">
           <div className="flex flex-col h-full">
             {/* Mobile Menu Header */}
-            <div className="flex h-16 items-center justify-between px-4 border-b border-slate-100">
+            <div className="flex h-16 items-center justify-between px-4 border-b border-slate-100 text-navy">
               <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
                 <Sparkles className="size-6 text-gold" />
-                <span className="text-xl font-bold text-navy tracking-tight">BrightSmile</span>
+                <span className="text-xl font-bold tracking-tight">BrightSmile</span>
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}
@@ -209,6 +211,6 @@ export function Header({ onBookingClick }: HeaderProps) {
           </div>
         </div>
       )}
-    </header>
+    </>
   )
 }
