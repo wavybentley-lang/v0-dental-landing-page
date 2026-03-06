@@ -14,6 +14,7 @@ import { Footer } from "@/components/Footer"
 import { BookingModal } from "@/components/BookingModal"
 import { ExitIntentModal } from "@/components/ExitIntentModal"
 import { LiquidSectionDivider } from "@/components/LiquidSectionDivider"
+import { MobileStickyCTA } from "@/components/MobileStickyCTA"
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -44,6 +45,7 @@ export default function Home() {
       <Footer />
       <BookingModal open={modalOpen} onOpenChange={setModalOpen} />
       <ExitIntentModal onBookingClick={openBooking} />
+      <MobileStickyCTA />
     </div>
   )
 }

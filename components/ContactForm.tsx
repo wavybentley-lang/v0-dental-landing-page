@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { FloatingInput } from "@/components/ui/floating-input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -53,44 +54,34 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-5 rounded-xl border border-border bg-card p-6 md:p-8"
+      className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6 md:p-10 shadow-xl"
     >
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor="contact-name">Full Name</Label>
-          <Input
-            id="contact-name"
-            name="name"
-            placeholder="Sarah Jenkins"
-            required
-          />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor="contact-email">Email</Label>
-          <Input
-            id="contact-email"
-            name="email"
-            type="email"
-            placeholder="sarah@example.com"
-            required
-          />
-        </div>
+      <div className="grid gap-6 sm:grid-cols-2">
+        <FloatingInput
+          id="contact-name"
+          name="name"
+          label="Full Name"
+          required
+        />
+        <FloatingInput
+          id="contact-email"
+          name="email"
+          type="email"
+          label="Email Address"
+          required
+        />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2">
+        <FloatingInput
+          id="contact-phone"
+          name="phone"
+          type="tel"
+          label="Phone Number"
+        />
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="contact-phone">Phone</Label>
-          <Input
-            id="contact-phone"
-            name="phone"
-            type="tel"
-            placeholder="(555) 000-0000"
-          />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor="contact-subject">Subject</Label>
           <Select name="subject" required>
-            <SelectTrigger id="contact-subject" className="w-full">
+            <SelectTrigger id="contact-subject" className="h-14 w-full rounded-md border-border bg-transparent px-4 transition-all focus:border-[#C9A96E] focus:ring-1 focus:ring-[#C9A96E]/20">
               <SelectValue placeholder="Select a topic" />
             </SelectTrigger>
             <SelectContent>
@@ -105,12 +96,12 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="contact-message">Message</Label>
+        <Label htmlFor="contact-message" className="mb-1 text-xs font-bold uppercase tracking-wider text-[#C9A96E]">Message</Label>
         <Textarea
           id="contact-message"
           name="message"
-          placeholder="Tell us how we can help..."
-          rows={5}
+          placeholder="How can we help you today?"
+          className="min-h-[120px] rounded-xl border-border p-4 transition-all focus:border-[#C9A96E] focus:ring-1 focus:ring-[#C9A96E]/20"
           required
         />
       </div>

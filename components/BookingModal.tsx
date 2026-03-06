@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { FloatingInput } from "@/components/ui/floating-input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { CheckCircle, Clock, DollarSign, ChevronRight, ArrowLeft, Sun, Cloud, Sunset } from "lucide-react"
@@ -519,50 +520,45 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-4">
-                    <div className="flex flex-col gap-1.5">
-                      <Label htmlFor="waitlist-name" className={cn(waitlistErrors.name && "text-red-500")}>Full Name</Label>
-                      <Input
-                        id="waitlist-name"
-                        placeholder="Sarah Jenkins"
-                        {...registerWaitlist("name")}
-                        className={cn(
-                          "transition-all duration-300",
-                          waitlistErrors.name
-                            ? "border-red-500 focus-visible:ring-red-500"
-                            : touchedWaitlistFields.name && !waitlistErrors.name
-                              ? "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
-                              : "border-border"
-                        )}
-                      />
-                      {waitlistErrors.name && (
-                        <p className="text-[10px] text-red-500 mt-0.5 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
-                          {waitlistErrors.name.message}
-                        </p>
+                  <div className="flex flex-col gap-5">
+                    <FloatingInput
+                      id="waitlist-name"
+                      label="Full Name"
+                      {...registerWaitlist("name")}
+                      className={cn(
+                        "transition-all duration-300",
+                        waitlistErrors.name
+                          ? "border-red-500 focus-visible:ring-red-500"
+                          : touchedWaitlistFields.name && !waitlistErrors.name
+                            ? "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
+                            : "border-border"
                       )}
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <Label htmlFor="waitlist-phone" className={cn(waitlistErrors.phone && "text-red-500")}>Phone</Label>
-                      <Input
-                        id="waitlist-phone"
-                        type="tel"
-                        placeholder="(555) 000-0000"
-                        {...registerWaitlist("phone")}
-                        className={cn(
-                          "transition-all duration-300",
-                          waitlistErrors.phone
-                            ? "border-red-500 focus-visible:ring-red-500"
-                            : touchedWaitlistFields.phone && !waitlistErrors.phone
-                              ? "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
-                              : "border-border"
-                        )}
-                      />
-                      {waitlistErrors.phone && (
-                        <p className="text-[10px] text-red-500 mt-0.5 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
-                          {waitlistErrors.phone.message}
-                        </p>
+                    />
+                    {waitlistErrors.name && (
+                      <p className="text-[10px] text-red-500 -mt-3 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                        {waitlistErrors.name.message}
+                      </p>
+                    )}
+
+                    <FloatingInput
+                      id="waitlist-phone"
+                      type="tel"
+                      label="Phone Number"
+                      {...registerWaitlist("phone")}
+                      className={cn(
+                        "transition-all duration-300",
+                        waitlistErrors.phone
+                          ? "border-red-500 focus-visible:ring-red-500"
+                          : touchedWaitlistFields.phone && !waitlistErrors.phone
+                            ? "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
+                            : "border-border"
                       )}
-                    </div>
+                    />
+                    {waitlistErrors.phone && (
+                      <p className="text-[10px] text-red-500 -mt-3 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                        {waitlistErrors.phone.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex flex-col-reverse gap-4 pt-4 sm:flex-row sm:justify-between px-2">
@@ -586,46 +582,43 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                   </div>
                 </form>
               ) : (
-                <form onSubmit={handleFormSubmit(onSubmit)} className="flex flex-col gap-4">
-                  <div className="mb-2 rounded-lg bg-muted/30 p-3 text-sm flex flex-col gap-1 border border-border/50">
+                <form onSubmit={handleFormSubmit(onSubmit)} className="flex flex-col gap-5">
+                  <div className="mb-2 rounded-xl bg-muted/40 p-4 text-sm flex flex-col gap-2 border border-border/50 shadow-inner">
                     <div className="flex items-center justify-between">
-                      <div>
-                        <span className="font-semibold text-foreground">Package:</span>{" "}
-                        <span className="text-muted-foreground">
-                          {selectedPackageData?.name}
-                        </span>
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-[#1B2B4B] uppercase text-[10px] tracking-wider">Package:</span>
+                        <span className="text-muted-foreground font-medium">{selectedPackageData?.name}</span>
                       </div>
                       <button
                         type="button"
                         onClick={() => setStep("package")}
-                        className="text-[#C9A96E] hover:underline font-medium text-xs"
+                        className="text-[#C9A96E] hover:underline font-bold text-xs"
                       >
                         Edit
                       </button>
                     </div>
                     <div className="flex items-center justify-between">
-                      <div>
-                        <span className="font-semibold text-foreground">Time:</span>{" "}
-                        <span className="text-muted-foreground">
-                          {selectedDate && format(selectedDate, "PPP")} at {selectedTime}
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-[#1B2B4B] uppercase text-[10px] tracking-wider">Time:</span>
+                        <span className="text-muted-foreground font-medium">
+                          {selectedDate && format(selectedDate, "MMM d")} at {selectedTime}
                         </span>
                       </div>
                       <button
                         type="button"
                         onClick={() => setStep("time")}
-                        className="text-[#C9A96E] hover:underline font-medium text-xs"
+                        className="text-[#C9A96E] hover:underline font-bold text-xs"
                       >
                         Edit
                       </button>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="flex flex-col gap-1.5">
-                      <Label htmlFor="booking-name" className={cn(errors.name && "text-red-500")}>Full Name</Label>
-                      <Input
+                      <FloatingInput
                         id="booking-name"
-                        placeholder="Sarah Jenkins"
+                        label="Full Name"
                         {...register("name")}
                         className={cn(
                           "transition-all duration-300",
@@ -643,11 +636,10 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                       )}
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <Label htmlFor="booking-phone" className={cn(errors.phone && "text-red-500")}>Phone</Label>
-                      <Input
+                      <FloatingInput
                         id="booking-phone"
                         type="tel"
-                        placeholder="(555) 000-0000"
+                        label="Phone Number"
                         {...register("phone")}
                         className={cn(
                           "transition-all duration-300",
@@ -667,11 +659,10 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="booking-email" className={cn(errors.email && "text-red-500")}>Email</Label>
-                    <Input
+                    <FloatingInput
                       id="booking-email"
                       type="email"
-                      placeholder="sarah@example.com"
+                      label="Email Address"
                       {...register("email")}
                       className={cn(
                         "transition-all duration-300",
@@ -690,36 +681,32 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="booking-message">
-                      Special Requests <span className="text-muted-foreground">(optional)</span>
+                    <Label htmlFor="booking-message" className="mb-1 text-xs font-bold uppercase tracking-wider text-[#C9A96E]">
+                      Special Requests <span className="text-muted-foreground font-normal">(optional)</span>
                     </Label>
                     <Textarea
                       id="booking-message"
-                      placeholder="Tell us about your whitening goals or any concerns..."
-                      rows={3}
+                      placeholder="Tell us about your whitening goals..."
+                      className="min-h-[100px] rounded-xl border-border p-4 transition-all focus:border-[#C9A96E] focus:ring-1 focus:ring-[#C9A96E]/20"
                       {...register("message")}
-                      className={cn(
-                        "transition-all duration-300",
-                        touchedFields.message && !errors.message && "border-[#C9A96E] focus-visible:ring-[#C9A96E]"
-                      )}
                     />
                   </div>
 
-                  <div className="flex flex-col-reverse gap-2 pt-2 sm:flex-row sm:justify-between">
+                  <div className="flex flex-col-reverse gap-4 pt-2 sm:flex-row sm:justify-between px-2">
                     <Button
                       type="button"
                       variant="ghost"
                       onClick={() => setStep("time")}
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 text-[#1B2B4B] font-bold hover:bg-muted"
                     >
-                      <ArrowLeft className="size-4" />
-                      Back
+                      <ArrowLeft className="size-5" />
+                      Back to Time
                     </Button>
                     <div className="flex gap-3">
                       <Button
                         type="button"
                         onClick={() => handleClose(false)}
-                        className="h-12 px-8 rounded-full bg-[#1B2B4B] hover:bg-[#1B2B4B]/90 text-white font-bold tracking-wide shadow-lg transition-all hover:-translate-y-0.5"
+                        className="h-12 px-8 rounded-full bg-muted hover:bg-muted/90 text-[#1B2B4B] font-bold tracking-wide"
                       >
                         Cancel
                       </Button>

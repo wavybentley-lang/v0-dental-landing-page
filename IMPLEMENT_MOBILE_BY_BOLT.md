@@ -38,10 +38,10 @@ This implementation plan focuses strictly on enhancing the mobile user experienc
 - **[ ] Fluid Typography:** Use CSS `clamp()` or `vw` units for smooth scaling across different mobile device widths.
 
 ### 6. Forms & CTAs
-- **[ ] Larger Inputs:** Ensure all form input fields are at least 48px tall.
-- **[ ] Single Column Layout:** Stack all form fields (name, email, phone) vertically in a single column.
-- **[ ] Floating Labels:** Implement floating labels to save vertical space while keeping context visible.
-- **[ ] Bottom CTA Bar:** Add a fixed-position bottom bar with a single "Book Appointment" button on key conversion pages.
+- **[x] Larger Inputs:** Ensure all form input fields are at least 48px tall.
+- **[x] Single Column Layout:** Stack all form fields (name, email, phone) vertically in a single column.
+- **[x] Floating Labels:** Implement floating labels to save vertical space while keeping context visible.
+- **[x] Bottom CTA Bar:** Add a fixed-position bottom bar with a single "Book Appointment" button on key conversion pages.
 
 ### 7. Performance & Technical
 - **[ ] Image Optimization:** Ensure all images are compressed (aim for <200KB) and served in modern formats like WebP.
