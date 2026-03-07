@@ -1,28 +1,31 @@
 "use client"
 
-import { ShieldCheck, Palette, HeartPulse } from "lucide-react"
+import { Smile, Sparkles, Clock } from "lucide-react"
 import { FeatureCard } from "@/components/FeatureCard"
 import { Button } from "@/components/ui/button"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const features = [
   {
-    icon: <ShieldCheck className="size-6" />,
-    title: "Enamel-Safe Technology",
+    icon: <Smile className="size-6" />,
+    title: "Smile Without Fear",
+    metric: "Zero Pain Experience",
     description:
-      "Professional-grade whitening that protects your enamel with advanced formulations. Our gentle approach ensures zero sensitivity for 98% of patients.",
+      "Experience a pain-free whitening journey that feels as good as it looks. Reclaim your confidence with a treatment designed for maximum comfort and zero sensitivity.",
   },
   {
-    icon: <Palette className="size-6" />,
-    title: "Custom Shade Calibration",
+    icon: <Sparkles className="size-6" />,
+    title: "Your Dream Smile, Delivered",
+    metric: "Natural Brilliance",
     description:
-      "We match your unique shade goals with precision-guided whitening protocols. Every treatment is tailored to achieve your perfect, natural-looking white.",
+      "Walk out with a naturally brilliant white that mirrors your unique personality. We don't just whiten teeth; we craft the aspirational look you've always wanted.",
   },
   {
-    icon: <HeartPulse className="size-6" />,
-    title: "Post-Care Integration",
+    icon: <Clock className="size-6" />,
+    title: "Radiance That Lasts Months",
+    metric: "6+ Months Brightness",
     description:
-      "Comprehensive aftercare plan to maintain your brilliant white smile for months. Includes a take-home kit and personalized maintenance schedule.",
+      "Enjoy lasting brightness for 6+ months without the need for constant touch-ups. Show off your radiant results in every photo, meeting, and social moment.",
   },
 ]
 
@@ -46,11 +49,10 @@ export function FeaturesSection({ onBookingClick }: FeaturesSectionProps) {
               Why Choose Us
             </span>
             <h2 className="text-balance text-3xl font-medium text-navy md:text-4xl text-navy">
-              Advanced Whitening Technology
+              The Results You&apos;ve Been Waiting For
             </h2>
             <p className="mt-4 text-pretty text-muted-foreground lg:text-lg">
-              Our clinic combines cutting-edge dental science with personalized
-              care to deliver safe, long-lasting results.
+              Feel the freedom to show off your smile. Our results-driven approach focuses on your confidence, delivering a transformation you can&apos;t wait to share.
             </p>
           </div>
 
@@ -67,7 +69,7 @@ export function FeaturesSection({ onBookingClick }: FeaturesSectionProps) {
               size="lg"
               className="rounded-lg font-bold uppercase"
             >
-              {"Ready? Book Now"}
+              {"Start My Transformation"}
             </Button>
           </div>
         </div>
