@@ -108,7 +108,10 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
 
           {/* Hero Visual - 40% Width on Desktop */}
           <div className="w-full lg:w-[40%] relative animate-in fade-in slide-in-from-right-8 duration-1000 delay-500 fill-mode-both">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-[0_32px_64px_-12px_rgba(15,23,42,0.2)] border border-white/50 bg-navy/5">
+            <div
+              className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-[0_32px_64px_-12px_rgba(15,23,42,0.2)] border border-white/50 bg-navy/5 isolate transform-gpu"
+              style={{ clipPath: 'inset(0 round 2rem)' }}
+            >
               {HERO_IMAGES.map((img, index) => (
                 <motion.div
                   key={img}
@@ -122,20 +125,20 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
                     opacity: { duration: 3.5, ease: "easeInOut" },
                     scale: { duration: 8, ease: "linear", repeat: Infinity }, // Infinite Ken Burns
                   }}
-                  className="absolute inset-0 origin-center"
+                  className="absolute inset-0 origin-center rounded-[2rem] overflow-hidden"
                 >
                   <Image
                     src={img}
                     alt={`Cinematic dental visualization ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-[2rem]"
                     priority={index === 0}
                     sizes="(max-width: 768px) 100vw, 40vw"
                   />
                 </motion.div>
               ))}
 
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-navy/10 pointer-events-none z-20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-navy/10 pointer-events-none z-20 rounded-[2rem]" />
 
               {/* WORLD-CLASS PROGRESS DOCK */}
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2 px-4 py-2 rounded-full glass-effect border border-white/20">
