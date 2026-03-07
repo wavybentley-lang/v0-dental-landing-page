@@ -30,13 +30,14 @@ export function LiquidSectionDivider({
     return (
         <div
             ref={ref}
-            className={`relative w-full overflow-hidden leading-[0] ${reverse ? "rotate-180" : ""}`}
+            className={`relative w-full overflow-visible leading-[0] -my-[2px] z-10 ${reverse ? "rotate-180" : ""}`}
             style={{ backgroundColor: from }}
         >
             <svg
                 viewBox="0 0 1440 128"
                 preserveAspectRatio="none"
-                className="h-24 w-full md:h-32 lg:h-48"
+                className="h-24 w-full md:h-32 lg:h-48 block -mb-[2px] relative z-10"
+                style={{ transform: "translateY(1px) scaleY(1.02)", transformOrigin: "top" }}
             >
                 <motion.path
                     d={d}

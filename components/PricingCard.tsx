@@ -32,8 +32,8 @@ export function PricingCard({
   return (
     <div
       ref={ref}
-      className={`relative flex flex-col rounded-xl border p-6 transition-all duration-500 lg:p-8 ${featured
-        ? "border-gold bg-white shadow-xl lg:scale-105 z-10"
+      className={`relative flex flex-col h-full rounded-xl border p-6 transition-all duration-500 lg:p-8 ${featured
+        ? "border-gold bg-white shadow-xl z-10"
         : "premium-card"
         } ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
       style={{ transitionDelay: `${delay}ms` }}
@@ -80,8 +80,8 @@ export function PricingCard({
       <Button
         onClick={onSelect}
         size="lg"
-        variant={featured ? "default" : "outline"}
-        className="w-full rounded-lg font-bold uppercase"
+        variant="default"
+        className="w-full rounded-lg font-bold uppercase text-white"
       >
         {cta}
       </Button>

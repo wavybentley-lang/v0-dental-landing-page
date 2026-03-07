@@ -75,7 +75,7 @@ export function PricingSection({ onBookingClick }: PricingSectionProps) {
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-5xl items-start gap-6 md:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
           {tiers.map((tier, i) => (
             <PricingCard
               key={tier.id}
