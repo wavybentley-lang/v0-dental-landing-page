@@ -84,7 +84,7 @@ export const ExpertsSection = () => {
                                 <div className="w-16 h-16 rounded-full bg-navy/5 flex items-center justify-center mb-4 group-hover:bg-gold/10 transition-colors duration-700 ease-out">
                                     <badge.icon className="w-8 h-8 text-gold group-hover:scale-110 transition-all duration-700 ease-out" />
                                 </div>
-                                <span className="text-navy font-semibold text-sm uppercase tracking-[0.2em] font-sans">
+                                <span className="text-navy font-medium text-xs uppercase tracking-[0.25em] font-serif">
                                     {badge.text}
                                 </span>
                             </div>
